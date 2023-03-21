@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently --raw \"npm run dev:back\" \"npm run dev:front\"",
+    "dev:back": "cd back-end && npm run dev",
+    "dev:front": "cd front-end && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "GJ Pineda",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
