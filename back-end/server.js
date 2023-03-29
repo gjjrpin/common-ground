@@ -1,10 +1,15 @@
 const express = require("express");
 //This connects to app.use(chat_route);
 const chat_route = require("./routes/ChatRoute.js");
+const categories_route = require("./routes/CategoriesRoute.js");
+const topics_route = require("./routes/TopicsRoute.js");
+require("dotenv").config();
 
 const app = express();
 // This is used by socket.io
 const server = require("http").createServer(app);
+// This will return us PORT 3001
+const PORT = process.env.PORT || "3001";
 // express -> HTTP
 // socket.io -> socket protocol
 // server (port 3001) via HTTP -> express
@@ -37,11 +42,16 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("send_chat_server", { username, message });
   });
 });
-
+//-----------------------------------
 //This connects to line 3.
 app.use(chat_route);
+app.use(categories_route);
 
-server.listen(3001);
+app.use(topics_route);
+
+server.listen(PORT, () => {
+  console.log(`Listening to port ${PORT}`);
+});
 
 // NOTES ABOUT SOCKET.IO
 
