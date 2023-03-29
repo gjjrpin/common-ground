@@ -67,6 +67,7 @@ function ChatPage() {
 
   return (
     <div>
+      <h1>Chat Page</h1>
       <div>
         {/* This displays each message */}
         {messages.map((message, index) => (
