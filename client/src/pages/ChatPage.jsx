@@ -67,7 +67,7 @@ function ChatPage() {
   }
 
   function handleSendMessage() {
-    //this connects to the server.js in back-end.
+    //this connects to the server.js in server.
     const message = {
       room_number: room_number,
       username: username,

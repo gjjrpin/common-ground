@@ -8,6 +8,6 @@ const URL = "http://localhost:3001";
 export const socket = io(URL);
 
 // SOCKET.IO NOTES
-// I USED THE LINK BELOW TO INSTALL SOCKET.IO TO MY FRONT-END
+// I USED THE LINK BELOW TO INSTALL SOCKET.IO TO MY CLIENT
 // npm install socket.io-client <-- This allows us to communicate with our socket.
 // https://socket.io/get-started/private-messaging-part-1/#client-initialization
