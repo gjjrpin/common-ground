@@ -13,6 +13,10 @@ function ChatPage() {
 
   const [username, setUsername] = useState("");
 
+  const [room_number, setRoom_number] = useState("");
+
+  // ---------------------------------------------------------------------------
+
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
@@ -35,6 +39,15 @@ function ChatPage() {
       //setMessages((previousMessages) => [...previousMessages, { username, message }])
       // console.log(username, message);
     });
+    // This is a new user joining a private room -------------------------------
+
+    socket.on("new_user_joined_room", ({ room_number, username }) => {
+      // todo
+      setMessages((previousMessages) => [
+        ...previousMessages,
+        { username: "Server", message: `${username} has Joined` },
+      ]);
+    });
 
     return () => {
       socket.off("connect", onConnect);
@@ -42,12 +55,29 @@ function ChatPage() {
     };
   }, []);
 
+  // THIS IS CREATING A CHAT ROOM ------------------------------------------
+
+  function handleJoinRoom() {
+    const roomDetails = {
+      room_number: room_number,
+      username: username,
+    };
+
+    socket.emit("join_room", roomDetails);
+  }
+
   function handleSendMessage() {
     //this connects to the server.js in back-end.
     const message = {
+      room_number: room_number,
       username: username,
       message: currentMessage,
     };
+
+    setMessages((previousMessages) => [
+      ...previousMessages,
+      { username, message: currentMessage },
+    ]);
 
     // SOCKET PROTOCOL
     // A lot like axios.post
@@ -56,13 +86,17 @@ function ChatPage() {
     setCurrentMessage("");
   }
 
+  // ---------------------------------------------------------------------------
+
   function handleOnChangeCurrentMessage(event) {
     setCurrentMessage(event.target.value);
   }
   function handleOnChangeUsername(event) {
     setUsername(event.target.value);
   }
-
+  function handleOnChangeRoomNumber(event) {
+    setRoom_number(event.target.value);
+  }
   // ---------------------------------------------------------------------------
 
   return (
@@ -77,11 +111,7 @@ function ChatPage() {
         ))}
       </div>
       <h3>username</h3>
-      <input
-        type="text"
-        value={username}
-        onChange={handleOnChangeUsername}
-      />{" "}
+      <input type="text" value={username} onChange={handleOnChangeUsername} />
       <br />
       <h3>Message</h3>
       <textarea
@@ -89,6 +119,14 @@ function ChatPage() {
         onChange={handleOnChangeCurrentMessage}
       ></textarea>
       <button onClick={handleSendMessage}>Send</button>
+      <hr />
+      <h3>Room Number</h3>
+      <input
+        type="text"
+        value={room_number}
+        onChange={handleOnChangeRoomNumber}
+      />
+      <button onClick={handleJoinRoom}>Join Room</button>
     </div>
   );
 }

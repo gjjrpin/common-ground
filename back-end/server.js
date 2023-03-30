@@ -17,11 +17,14 @@ const PORT = process.env.PORT || "3001";
 // ----------------------------------------------------------
 // copied directly from socket.io.
 const io = require("socket.io")(server, {
+  // cors= cross origin resource- if another website wants to access your server, you need to whitelist it first.
+  // whitelisting = allowing a client to use your server.
   cors: {
-    origin: "http://localhost:3002",
+    origin: "http://localhost:3000",
   },
 });
 
+// THIS IS THE ACTUAL CHAT CONNECTION-----------------------------------------------
 // every time someone enters our socket, this will initialize.
 // When someone connects to our socket, it will log out "someone connected"
 io.on("connection", (socket) => {
@@ -31,18 +34,34 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("socket: connection closed");
   });
+
+  // THIS IS THE CHAT ROOMS--------------------------------------------------
+  // https://socket.io/docs/v4/rooms/#joining-and-leaving
+
+  socket.on("join_room", ({ room_number, username }) => {
+    console.log("someone joined the room: " + room_number);
+
+    socket.join(room_number);
+    socket.broadcast
+      .to(room_number)
+      .emit("new_user_joined_room", { room_number, username });
+  });
+
+  //--------------------------------------------------------
   // This is the same as connected but sending chat.
   // we are destructuring username and message from the ChatPage.jsx component.
   // client -> send_chat (message) -> server -> client
-  socket.on("send_chat_client", ({ username, message }) => {
+  socket.on("send_chat_client", ({ room_number, username, message }) => {
     // console.log("sending...");
     // console.log(username, message);
-    // This sends
-    socket.emit("send_chat_server", { username, message });
-    socket.broadcast.emit("send_chat_server", { username, message });
+    // broadcast is like emit but it sends the response to itself as well
+    socket.broadcast
+      .to(room_number)
+      .emit("send_chat_server", { username, message });
+    //socket.broadcast.emit("send_chat_server", { username, message });
   });
 });
-//-----------------------------------
+//---------------------------------------------------------
 //This connects to line 3.
 app.use(chat_route);
 app.use(categories_route);
