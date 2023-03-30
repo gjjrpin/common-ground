@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently --raw \"npm run dev:back\" \"npm run dev:front\"",
-    "dev:back": "cd back-end && npm run dev",
-    "dev:front": "cd front-end && npm run start",
+    "dev:back": "cd server && npm run dev",
+    "dev:front": "cd client && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "GJ Pineda",
