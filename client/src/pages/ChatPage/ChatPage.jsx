@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { socket } from "../socket";
+import { socket } from "../../socket";
 import "./ChatPage.scss";
+import axios from "axios";
 
 function ChatPage() {
   // ---------------------------------------------------------------------------
@@ -14,6 +15,8 @@ function ChatPage() {
   const [username, setUsername] = useState("");
 
   const [room_number, setRoom_number] = useState("");
+
+  const [topic, setTopic] = useState({});
 
   // ---------------------------------------------------------------------------
 
@@ -55,6 +58,19 @@ function ChatPage() {
     };
   }, []);
 
+  // THIS IS PUTTING A TOPIC  CHAT ROOM ------------------------------------------
+
+  async function getTopic() {
+    try {
+      const response = await axios.get(
+        `/api/topics/ae78fbcd-03e6-4b25-a83e-1fdfb1f35692`
+      );
+      setTopic(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // THIS IS CREATING A CHAT ROOM ------------------------------------------
 
   function handleJoinRoom() {
@@ -62,7 +78,7 @@ function ChatPage() {
       room_number: room_number,
       username: username,
     };
-
+    getTopic();
     socket.emit("join_room", roomDetails);
   }
 
@@ -120,6 +136,7 @@ function ChatPage() {
       ></textarea>
       <button onClick={handleSendMessage}>Send</button>
       <hr />
+      <p>{topic.statement}</p>
       <h3>Room Number</h3>
       <input
         type="text"
