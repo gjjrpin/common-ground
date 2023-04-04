@@ -13,6 +13,9 @@ function NavBar() {
           <Link to="/login">login</Link>
         </li>
         <li>
+          <Link to="/sorting">sorting</Link>
+        </li>
+        <li>
           <Link to="/chat">chat</Link>
         </li>
         <li>
