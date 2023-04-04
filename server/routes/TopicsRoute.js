@@ -9,8 +9,14 @@ router.get("/api/topics/:category_id", async (req, res) => {
   try {
     // extracting category from req.params.
     const { category_id } = req.params;
+    // This is limiting the number of responses.
+    const { limit = 3 } = req.query;
+
     // This displays the title for the category.
-    const topics = await knex("topics").where("category_id", category_id);
+    const topics = await knex("topics")
+      .where("category_id", category_id)
+      // This limits the amount of topics
+      .limit(limit);
     const category = await knex("categories").where("id", category_id);
 
     const response = {
