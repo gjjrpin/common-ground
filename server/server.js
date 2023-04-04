@@ -12,7 +12,7 @@ require("dotenv").config();
 const app = express();
 // This is used by socket.io
 const server = require("http").createServer(app);
-// This will return us PORT 3001
+
 const PORT = process.env.PORT || "3001";
 // express -> HTTP
 // socket.io -> socket protocol
@@ -28,7 +28,7 @@ const io = require("socket.io")(server, {
   },
 });
 
-// THIS IS THE ACTUAL CHAT CONNECTION-----------------------------------------------
+// THIS IS THE CHAT CONNECTION-----------------------------------------------
 // every time someone enters our socket, this will initialize.
 // When someone connects to our socket, it will log out "someone connected"
 io.on("connection", (socket) => {
@@ -51,13 +51,12 @@ io.on("connection", (socket) => {
       .emit("new_user_joined_room", { room_number, username });
   });
 
-  //------------THE CLIENT IS SENDING A MESSAGE HERE-------------------
-
-  // This is the same as connected but sending chat.
-  // we are destructuring username and message from the ChatPage.jsx component.
-  // client -> send_chat (message) -> server -> client
+  // THE CLIENT IS SENDING A MESSAGE HERE-------------------------------------
+  /* This is the same as connected but sending chat.
+     we are destructuring username and message from the ChatPage.jsx component.
+     client -> send_chat (message) -> server -> client */
   socket.on("send_chat_client", async ({ room_number, username, message }) => {
-    // -------THIS IS CALLING OPENAI API TO THE CHAT--------------------------
+    // THIS IS CALLING OPENAI API TO THE CHAT---------------------------------
 
     const result = await openai.isInappropriate(message);
     // No, the user is not breaking the rules.
@@ -86,7 +85,3 @@ app.use(topics_route);
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
 });
-
-// NOTES ABOUT SOCKET.IO
-
-// socket.io works in a different protocol called socket protocol. (example http)
