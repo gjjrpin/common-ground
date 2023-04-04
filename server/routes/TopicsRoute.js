@@ -5,7 +5,19 @@ const knex = require("knex")(require("../knexfile"));
 // We are using router here to manage the endpoint.
 const router = express.Router();
 
-router.get("/api/topics/:category_id", async (req, res) => {
+router.get("/api/topics/:topic_id", async (req, res) => {
+  try {
+    const { topic_id } = req.params; // topic id
+
+    const topic = await knex("topics").where("id", topic_id).first();
+
+    res.send(topic);
+  } catch (error) {
+    res.status(500).send(`Something went wrong`);
+  }
+});
+
+router.get("/api/topics/category/:category_id", async (req, res) => {
   try {
     // extracting category from req.params.
     const { category_id } = req.params;

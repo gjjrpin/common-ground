@@ -4,10 +4,10 @@ const express = require("express");
 const router = express.Router();
 const openai = require("../utilities/openai.js");
 
-router.get("/isappropriate", async (req, res) => {
+router.get("/inappropriate", async (req, res) => {
   try {
-    const { message_1, message_2 } = req.query;
-    const response = await openai.isAppropriate(message_1, message_2);
+    const { message } = req.data;
+    const response = await openai.isInappropriate(message);
 
     res.status(200).json({ result: response.data.choices[0].text });
   } catch (error) {
@@ -18,16 +18,49 @@ router.get("/isappropriate", async (req, res) => {
 
 // --------------------------------------------------------------------------------
 
-router.get("/joke", async (req, res) => {
-  try {
-    const response = await openai.generateJoke();
-
-    res.status(200).json({ result: response.data.choices[0].text });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Something Went Wrong!");
-  }
-});
-
-// This is how we export modules.
 module.exports = router;
+
+const topics = [
+  {
+    topic_prompt: "Do you believe in x",
+    queues: {
+      agree: [], // 005 is user_id
+      disagree: [],
+    },
+  },
+  {
+    topic_prompt: "Do you believe in a",
+    queues: {
+      agree: [],
+      disagree: [],
+    },
+  },
+  {
+    topic_prompt: "Do you believe in b",
+    queues: {
+      agree: [],
+      disagree: [],
+    },
+  },
+  {
+    topic_prompt: "Do you belive in c",
+    queues: {
+      agree: [],
+      disagree: [],
+    },
+  },
+];
+
+//chatroom (001, 002)
+
+// Random prompt - Do you believe i Russia?
+// Agree     queueAgree[y] prompt3
+// Disagree  queueDisagree[] prompt3
+
+// Random prompt - Do you believe i Jesus?
+// Agree     queueAgree[y]    of prompt2
+// Disagree  queueDisagree[]   of prompt2
+
+// Random prompt - Do you believe i naborstion?
+// Agree     queueAgree[] of prompt1
+// Disagree  queueDisagree[] of prompt1

@@ -1,10 +1,12 @@
 const express = require("express");
+const openai = require("./utilities/openai.js");
 //This connects to app.use(chat_route);
 const chat_route = require("./routes/ChatRoute.js");
 const categories_route = require("./routes/CategoriesRoute.js");
 const topics_route = require("./routes/TopicsRoute.js");
 const chatgpt_route = require("./routes/ChatgptRoute.js");
 const chatgpttesting_route = require("./routes/ChatgptTestingRoute.js");
+
 require("dotenv").config();
 
 const app = express();
@@ -49,18 +51,29 @@ io.on("connection", (socket) => {
       .emit("new_user_joined_room", { room_number, username });
   });
 
-  //--------------------------------------------------------
+  //------------THE CLIENT IS SENDING A MESSAGE HERE-------------------
+
   // This is the same as connected but sending chat.
   // we are destructuring username and message from the ChatPage.jsx component.
   // client -> send_chat (message) -> server -> client
-  socket.on("send_chat_client", ({ room_number, username, message }) => {
-    // console.log("sending...");
-    // console.log(username, message);
-    // broadcast is like emit but it sends the response to itself as well
-    socket.broadcast
-      .to(room_number)
-      .emit("send_chat_server", { username, message });
-    //socket.broadcast.emit("send_chat_server", { username, message });
+  socket.on("send_chat_client", async ({ room_number, username, message }) => {
+    // -------THIS IS CALLING OPENAI API TO THE CHAT--------------------------
+
+    const result = await openai.isInappropriate(message);
+    // No, the user is not breaking the rules.
+    // Yes, the user is breaking the rules.
+    if (result.includes("Yes")) {
+      // send warning here.
+      socket.to(room_number).emit("send_chat_server", {
+        username: "Server",
+        message: "The other user said something inappropriate",
+      });
+    } else {
+      // console.log("sending...");
+      // console.log(username, message);
+      // broadcast is like emit but it sends the response to itself as well
+      socket.to(room_number).emit("send_chat_server", { username, message });
+    }
   });
 });
 //---------------------------------------------------------
