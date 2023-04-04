@@ -65,9 +65,9 @@ io.on("connection", (socket) => {
     // Yes, the user is breaking the rules.
     if (result.includes("Yes")) {
       // send warning here.
-      socket.to(room_number).emit("send_chat_server", {
+      socket.emit("send_chat_server", {
         username: "Server",
-        message: "The other user said something inappropriate",
+        message: "You said something inappropriate",
       });
     } else {
       // console.log("sending...");
