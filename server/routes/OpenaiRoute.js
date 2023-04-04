@@ -20,6 +20,7 @@ router.get("/inappropriate", async (req, res) => {
 
 module.exports = router;
 
+/*
 const topics = [
   {
     topic_prompt: "Do you believe in x",
@@ -50,6 +51,7 @@ const topics = [
     },
   },
 ];
+*/
 
 //chatroom (001, 002)
 

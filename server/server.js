@@ -4,8 +4,8 @@ const openai = require("./utilities/openai.js");
 const chat_route = require("./routes/ChatRoute.js");
 const categories_route = require("./routes/CategoriesRoute.js");
 const topics_route = require("./routes/TopicsRoute.js");
-const chatgpt_route = require("./routes/ChatgptRoute.js");
-const chatgpttesting_route = require("./routes/ChatgptTestingRoute.js");
+const openai_route = require("./routes/OpenaiRoute.js");
+const openaitesting_route = require("./routes/OpenaiTestingRoute.js");
 
 require("dotenv").config();
 
@@ -79,8 +79,8 @@ io.on("connection", (socket) => {
 
 app.use(chat_route);
 app.use(categories_route);
-app.use(chatgpt_route);
-app.use(chatgpttesting_route);
+app.use(openai_route);
+app.use(openaitesting_route);
 app.use(topics_route);
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);

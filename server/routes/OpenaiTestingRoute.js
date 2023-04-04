@@ -13,7 +13,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-router.get("/chatgpt_test", async function (req, res) {
+router.get("/openai_test", async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
@@ -28,7 +28,7 @@ router.get("/chatgpt_test", async function (req, res) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: "Rewrite the game of thrones ending for me where Jon snow dies",
-      max_tokens: 8,
+      max_tokens: 5,
       temperature: 0.6,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
