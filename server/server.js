@@ -39,11 +39,13 @@ io.on("connection", (socket) => {
     console.log("socket: connection closed");
   });
 
-  // THIS IS THE CHAT ROOMS--------------------------------------------------
+  // THIS IS THE CHAT ROOMS----------------------------------------------------
   // https://socket.io/docs/v4/rooms/#joining-and-leaving
 
   socket.on("join_room", ({ room_number, username }) => {
     console.log("someone joined the room: " + room_number);
+
+    // THIS NOTIFIES THAT ANOTHER PERSON JOINED THE ROOM---------------------------
 
     socket.join(room_number);
     socket.broadcast
