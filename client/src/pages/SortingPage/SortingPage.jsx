@@ -1,27 +1,52 @@
 import "./SortingPage.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SortingPage() {
   const [topics, setTopics] = useState([]);
+  const navigate = useNavigate();
 
-  // useEffect(async () => {
-  //   await getTopics("2922c286-16cd-4d43-ab98-c79f698aeab1");
-  //   await getTopics("2922c286-16cd-4d43-ab98-c79f698aeab2");
-  //   await getTopics("2922c286-16cd-4d43-ab98-c79f698aeab3");
-  // }, []);
+  useEffect(() => {
+    getTopics();
+  }, []);
 
-  async function getTopics(category_id) {
+  async function getTopics() {
     try {
-      const response = await axios.get(`/api/topics/category/${category_id}`);
-      // console.log(response.data.topics);
-      // This allows the 3 different topics to stack on top of each other.
-      // ...[1,2,3,4] = 1,2,3,4
-      // [...[1,2,3,4], ...[5,6,7]] = [1,2,3,4,5,6,7]
-      setTopics((prevTopics) => {
-        const arr = [...prevTopics, ...response.data.topics];
-        return arr;
+      const response = await axios.get(`/api/topics`);
+      setTopics(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // "/api/topics/:topic_id/agree"
+
+  async function agree(topic_id) {
+    try {
+      const response = await axios.post(`/api/topics/${topic_id}/agree`, {
+        username: "Test",
       });
+      if (response.data.room_id) {
+        const room_id = response.data.room_id;
+        console.log("match");
+        navigate(`/chat/${room_id}/${topic_id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function disagree(topic_id) {
+    try {
+      const response = await axios.post(`/api/topics/${topic_id}/disagree`, {
+        username: "Test",
+      });
+      if (response.data.room_id) {
+        const room_id = response.data.room_id;
+        console.log("match");
+        navigate(`/chat/${room_id}/${topic_id}`);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -33,14 +58,13 @@ function SortingPage() {
         <h1>SORTING PAGE</h1>
         {topics.map((topic) => {
           return (
-            <div>
-              {topic.statement} <button>Agree</button>
-              <button>Disagree</button>
+            <div key={topic.id}>
+              {topic.statement}{" "}
+              <button onClick={() => agree(topic.id)}>Agree</button>
+              <button onClick={() => disagree(topic.id)}>Disagree</button>
             </div>
           );
         })}
-        <hr />
-        <button>Submit</button>
       </div>
     </div>
   );
@@ -71,7 +95,7 @@ const topics = [
   {
     topic_prompt: "Do you believe in x",
     queues: {
-      agree: [], // 005 is user_id
+      agree: [],
       disagree: [],
     },
   },
@@ -90,7 +114,7 @@ const topics = [
     },
   },
   {
-    topic_prompt: "Do you belive in c",
+    topic_prompt: "Do you believe in c",
     queues: {
       agree: [],
       disagree: [],

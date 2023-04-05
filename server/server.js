@@ -79,6 +79,10 @@ io.on("connection", (socket) => {
 });
 //---------------------------------------------------------
 
+// allows us to read x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+// --------------------------------------------------------
 app.use(chat_route);
 app.use(categories_route);
 app.use(openai_route);

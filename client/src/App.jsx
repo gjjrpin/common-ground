@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/chat/:room_id/:topic_id" element={<ChatPage />} />
         <Route path="/sorting" element={<SortingPage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="*" element={<NotFoundPage />} />

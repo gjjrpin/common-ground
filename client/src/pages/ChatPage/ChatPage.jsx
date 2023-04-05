@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { socket } from "../../socket";
 import "./ChatPage.scss";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function ChatPage() {
   // ---------------------------------------------------------------------------
+  const { room_id, topic_id } = useParams();
+
   // copied from socket.io website. https://socket.io/how-to/use-with-react
   const [isConnected, setIsConnected] = useState(socket.connected);
 
@@ -14,13 +17,13 @@ function ChatPage() {
 
   const [username, setUsername] = useState("");
 
-  const [room_number, setRoom_number] = useState("");
-
   const [topic, setTopic] = useState({});
 
   // ---------------------------------------------------------------------------
 
   useEffect(() => {
+    joinRoom(room_id);
+
     function onConnect() {
       setIsConnected(true);
     }
@@ -62,9 +65,7 @@ function ChatPage() {
 
   async function getTopic() {
     try {
-      const response = await axios.get(
-        `/api/topics/ae78fbcd-03e6-4b25-a83e-1fdfb1f35692`
-      );
+      const response = await axios.get(`/api/topics/${topic_id}`);
       setTopic(response.data);
     } catch (error) {
       console.log(error);
@@ -73,9 +74,9 @@ function ChatPage() {
 
   // THIS IS CREATING A CHAT ROOM ------------------------------------------
 
-  function handleJoinRoom() {
+  function joinRoom(roomid) {
     const roomDetails = {
-      room_number: room_number,
+      room_number: roomid,
       username: username,
     };
     getTopic();
@@ -85,7 +86,7 @@ function ChatPage() {
   function handleSendMessage() {
     //this connects to the server.js in server.
     const message = {
-      room_number: room_number,
+      room_number: room_id,
       username: username,
       message: currentMessage,
     };
@@ -110,14 +111,14 @@ function ChatPage() {
   function handleOnChangeUsername(event) {
     setUsername(event.target.value);
   }
-  function handleOnChangeRoomNumber(event) {
-    setRoom_number(event.target.value);
-  }
   // ---------------------------------------------------------------------------
 
   return (
     <div>
       <h1>Chat Page</h1>
+      <hr />
+      <p>{topic.statement}</p>
+      <hr />
       <div>
         {/* This displays each message */}
         {messages.map((message, index) => (
@@ -136,14 +137,6 @@ function ChatPage() {
       ></textarea>
       <button onClick={handleSendMessage}>Send</button>
       <hr />
-      <p>{topic.statement}</p>
-      <h3>Room Number</h3>
-      <input
-        type="text"
-        value={room_number}
-        onChange={handleOnChangeRoomNumber}
-      />
-      <button onClick={handleJoinRoom}>Join Room</button>
     </div>
   );
 }
