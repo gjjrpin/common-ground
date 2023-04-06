@@ -27,6 +27,8 @@ function initialize(server) {
     // This is the same as connected but disconnected.
     socket.on("disconnect", () => {
       console.log("socket: connection closed");
+      // This is the person that disconnects
+      socket.broadcast.emit("user_disconnected", { username: "User" });
     });
 
     // THIS IS THE CHAT ROOMS----------------------------------------------------

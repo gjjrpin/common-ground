@@ -10,12 +10,12 @@ function NavBar() {
       </Link>
       <ul className="nav__list">
         <li className="nav__item">
-          <Link className="nav__link" to="/">
+          <a className="nav__link" href="/#home">
             Home
-          </Link>
+          </a>
         </li>
         <li className="nav__item">
-          <Link className="nav__link" to="/sorting">
+          <Link className="nav__link" to="/login">
             Get Started
           </Link>
         </li>

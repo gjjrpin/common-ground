@@ -7,6 +7,9 @@
   &__prompt {
   }
   &__message-container {
+    height: 8rem;
+    overflow: auto;
+    background-color: lightgrey;
   }
   &__username {
   }

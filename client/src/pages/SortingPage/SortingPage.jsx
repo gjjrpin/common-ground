@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SortingPage() {
+function SortingPage({ username }) {
   const [topics, setTopics] = useState([]);
   const [currentTopic, setCurrentTopic] = useState({});
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
@@ -69,6 +69,7 @@ function SortingPage() {
     <div>
       <div className="sorting">
         <div className="sorting__container">
+          <h2>{username}</h2>
           <h2 className="sorting__prompt">{currentTopic.statement}</h2>
           <div className="sorting__button-container">
             <button

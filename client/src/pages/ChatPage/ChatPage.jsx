@@ -3,8 +3,9 @@ import { socket } from "../../socket";
 import "./ChatPage.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useRef } from "react";
 
-function ChatPage() {
+function ChatPage({ username }) {
   // ---------------------------------------------------------------------------
   const { room_id, topic_id } = useParams();
 
@@ -15,11 +16,16 @@ function ChatPage() {
 
   const [currentMessage, setCurrentMessage] = useState("");
 
-  const [username, setUsername] = useState("");
-
   const [topic, setTopic] = useState({});
 
+  const endOfMessageRef = useRef();
+
   // ---------------------------------------------------------------------------
+
+  // auto-scroll down effect.
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     joinRoom(room_id);
@@ -35,6 +41,13 @@ function ChatPage() {
     // This is how the sockets connect using useEffect
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
+    // This sends a message when the user disconnects.
+    socket.on("user_disconnected", ({ username }) => {
+      setMessages((previousMessages) => [
+        ...previousMessages,
+        { username: "server", message: `${username} has disconnected` },
+      ]);
+    });
     socket.on("send_chat_server", ({ username, message }) => {
       // spreading. spreads the array but with a new message.
       //setMessages([...messages, { username, message }]);
@@ -42,6 +55,7 @@ function ChatPage() {
         ...previousMessages,
         { username, message },
       ]);
+
       //setMessages((previousMessages) => [...previousMessages, { username, message }])
       // console.log(username, message);
     });
@@ -103,13 +117,14 @@ function ChatPage() {
     setCurrentMessage("");
   }
 
+  function scrollToBottom() {
+    endOfMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
   // ---------------------------------------------------------------------------
 
   function handleOnChangeCurrentMessage(event) {
     setCurrentMessage(event.target.value);
-  }
-  function handleOnChangeUsername(event) {
-    setUsername(event.target.value);
   }
   // ---------------------------------------------------------------------------
 
@@ -120,20 +135,33 @@ function ChatPage() {
       </div>
       <div className="chat__message-container">
         {/* This displays each message */}
-        {messages.map((message, index) => (
-          <div key={index}>
-            {message.username}:{message.message}
-          </div>
-        ))}
+        {messages.map((message, index) =>
+          // This changes the color of the text bubbles.----------------
+          {
+            if (message.username === username) {
+              return (
+                <div key={index} style={{ backgroundColor: "red" }}>
+                  {message.username}:{message.message}
+                </div>
+              );
+            } else if (message.username === "Server") {
+              return (
+                <div key={index} style={{ backgroundColor: "yellow" }}>
+                  {message.username}:{message.message}
+                </div>
+              );
+              // ----------------------------------------------------
+            } else {
+              return (
+                <div key={index} style={{ backgroundColor: "lightblue" }}>
+                  {message.username}:{message.message}
+                </div>
+              );
+            }
+          }
+        )}
+        <div ref={endOfMessageRef}></div>
       </div>
-      <h3>Username</h3>
-      <input
-        className="chat__username"
-        type="text"
-        value={username}
-        onChange={handleOnChangeUsername}
-      />
-      <br />
       <h3>Message</h3>
       <textarea
         className="chat__message-box"
