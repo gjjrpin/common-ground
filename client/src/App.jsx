@@ -5,7 +5,6 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import ChatPage from "./pages/ChatPage/ChatPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SortingPage from "./pages/SortingPage/SortingPage";
-import HowItWorksPage from "./pages/HowItWorksPage/HowItWorksPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/chat/:room_id/:topic_id" element={<ChatPage />} />
         <Route path="/sorting" element={<SortingPage />} />
-        <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route />
       </Routes>

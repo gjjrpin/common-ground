@@ -1,0 +1,26 @@
+.footer {
+  background-color: grey;
+  margin: 0;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__logo-container {
+  }
+  &__logo-link {
+  }
+  &__logo {
+    height: 3rem;
+  }
+  &__main-container {
+  }
+  &__list-container {
+    display: flex;
+    gap: 1rem;
+  }
+  &__list {
+    list-style-type: none;
+  }
+  &__copyright {
+  }
+}

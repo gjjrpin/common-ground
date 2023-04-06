@@ -1,0 +1,22 @@
+.sorting {
+  text-align: center;
+  padding-top: 15rem;
+  padding-bottom: 15rem;
+  &__container {
+  }
+  &__prompt {
+  }
+  &__button-container {
+  }
+  &__button {
+    padding: 2rem;
+    background-color: lightblue;
+    border: none;
+    outline: none;
+    margin: 1rem;
+    &:hover {
+      background-color: purple;
+      cursor: pointer;
+    }
+  }
+}

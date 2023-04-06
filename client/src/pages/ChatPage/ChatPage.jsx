@@ -114,12 +114,11 @@ function ChatPage() {
   // ---------------------------------------------------------------------------
 
   return (
-    <div>
-      <h1>Chat Page</h1>
-      <hr />
-      <p>{topic.statement}</p>
-      <hr />
-      <div>
+    <div className="chat">
+      <div className="chat__prompt-container">
+        <h2 className="chat__prompt">{topic.statement}</h2>
+      </div>
+      <div className="chat__message-container">
         {/* This displays each message */}
         {messages.map((message, index) => (
           <div key={index}>
@@ -127,16 +126,23 @@ function ChatPage() {
           </div>
         ))}
       </div>
-      <h3>username</h3>
-      <input type="text" value={username} onChange={handleOnChangeUsername} />
+      <h3>Username</h3>
+      <input
+        className="chat__username"
+        type="text"
+        value={username}
+        onChange={handleOnChangeUsername}
+      />
       <br />
       <h3>Message</h3>
       <textarea
+        className="chat__message-box"
         value={currentMessage}
         onChange={handleOnChangeCurrentMessage}
       ></textarea>
-      <button onClick={handleSendMessage}>Send</button>
-      <hr />
+      <button className="chat__button" onClick={handleSendMessage}>
+        Send
+      </button>
     </div>
   );
 }

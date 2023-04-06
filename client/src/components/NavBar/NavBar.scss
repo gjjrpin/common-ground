@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: darkgray;
+  position: fixed;
+
+  &__logo {
+    height: 4rem;
+  }
+  &__list {
+    display: flex;
+    list-style-type: none;
+    gap: 1rem;
+  }
+  &__item {
+    background-color: lightblue;
+    padding: 1rem;
+    &:hover {
+      background-color: purple;
+      cursor: pointer;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: black;
+  }
+}

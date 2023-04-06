@@ -1,0 +1,24 @@
+.chat {
+  padding: 10rem;
+  background-color: green;
+  &__prompt-container {
+    background-color: lightcoral;
+  }
+  &__prompt {
+  }
+  &__message-container {
+  }
+  &__username {
+  }
+  &__message-box {
+    resize: none;
+    padding: 0.2rem 5rem 0.2rem 5rem;
+  }
+  &__button {
+    background-color: lightblue;
+    margin-left: 2rem;
+    padding: 2rem 3rem 2rem 3rem;
+    border: none;
+    outline: none;
+  }
+}

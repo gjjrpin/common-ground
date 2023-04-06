@@ -1,28 +1,31 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.svg";
 
 function NavBar() {
   return (
-    <div>
-      NAV BAR
-      <ul>
-        <li>
-          <Link to="/">landing</Link>
+    <nav className="nav container">
+      <Link>
+        <img className="nav__logo" src={logo} alt="logo" />
+      </Link>
+      <ul className="nav__list">
+        <li className="nav__item">
+          <Link className="nav__link" to="/">
+            Home
+          </Link>
         </li>
-        <li>
-          <Link to="/login">login</Link>
+        <li className="nav__item">
+          <Link className="nav__link" to="/sorting">
+            Get Started
+          </Link>
         </li>
-        <li>
-          <Link to="/sorting">sorting</Link>
-        </li>
-        <li>
-          <Link to="/chat">chat</Link>
-        </li>
-        <li>
-          <Link to="/how-it-works">how-it-works</Link>
+        <li className="nav__item">
+          <a className="nav__link" href="/#how-it-works">
+            How It Works
+          </a>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 }
 

@@ -67,13 +67,23 @@ function SortingPage() {
 
   return (
     <div>
-      <div>
-        <h1>SORTING PAGE</h1>
-
-        <div>
-          {currentTopic.statement}
-          <button onClick={() => agree(currentTopic.id)}>Agree</button>
-          <button onClick={() => disagree(currentTopic.id)}>Disagree</button>
+      <div className="sorting">
+        <div className="sorting__container">
+          <h2 className="sorting__prompt">{currentTopic.statement}</h2>
+          <div className="sorting__button-container">
+            <button
+              className="sorting__button"
+              onClick={() => agree(currentTopic.id)}
+            >
+              Agree
+            </button>
+            <button
+              className="sorting__button"
+              onClick={() => disagree(currentTopic.id)}
+            >
+              Disagree
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,24 +1,39 @@
-import "./HowItWorksPage.scss";
-import Footer from "../../components/Footer/Footer";
+import "./HowItWorks.scss";
 
 function HowItWorksPage() {
   return (
     <>
       <div>
-        <h1>HOW IT WORKS PAGE</h1>
         <h2>How It Works</h2>
         <p>
-          Common Ground is a full-stack application that utilizes React for the
-          front end and Express, Node and MySQL for the back end. The goal of
-          the app is to promote constructive conversations and find common
-          ground between users. Once you log in, you'll be presented with ten
-          questions to which you can either agree or disagree. Based on your
-          responses, the app will randomly pair you with another user who shares
-          or opposes your views, giving you a chance to engage in a meaningful
-          chat. After the conversation, both users can rate each other with a
-          thumbs up or down based on the interaction.
+          "When you click "Get Started", you'll be prompted a statement that you
+          can either agree or disagree with. You'll need to keep clicking away
+          until you find someone who disagrees with you so much that you just
+          have to talk it out.
+          <p>
+            Think of this like Tinder, but instead of swiping left or right for
+            a quick hookup, you're swiping for someone to argue with.
+          </p>
+          <p>
+            But in all seriousness, this app is all about finding common ground
+            with someone who sees things differently than you do. With so much
+            division in the world, you'd be surprised how many things you'll
+            have in common with someone you don't agree with.
+          </p>
         </p>
         <h2>Rules:</h2>
+        <p>
+          I know what you're thinking... This is going to be very messy. A
+          conservative and a liberal in one room? Am I trying to start a culture
+          war? Not to worry! I'm using our future AI overlords to moderate the
+          content.
+        </p>
+        <p>
+          OpenAI (ChatGPT) will read every message sent and checks if the user
+          violates any of the rules below. If they do, the AI will warn them
+          that they are violating the rules and not allow the message to be sent
+          to the other user.
+        </p>
         <ul>
           <li>
             Respect each other: Both parties must show respect for each other at
@@ -58,7 +73,6 @@ function HowItWorksPage() {
           </li>
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

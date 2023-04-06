@@ -1,0 +1,27 @@
+.content {
+  &__container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+  }
+  &__column {
+    width: 50%;
+  }
+  &__link {
+    display: flex;
+    gap: 1rem;
+  }
+  &__button {
+    text-decoration: none;
+    color: black;
+    background-color: lightblue;
+    padding: 1.5rem;
+    &:hover {
+      background-color: purple;
+      cursor: pointer;
+    }
+  }
+  &__image {
+    height: 20rem;
+  }
+}
