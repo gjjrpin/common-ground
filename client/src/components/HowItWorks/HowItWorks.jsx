@@ -11,32 +11,43 @@ function HowItWorksPage() {
   const [active7, setActive7] = useState(false);
 
   const handleClick = () => {
+    resetAll();
     setActive(!active);
   };
   const handleClick2 = () => {
+    resetAll();
     setActive2(!active2);
-    if (active === true) setActive(false);
   };
   const handleClick3 = () => {
+    resetAll();
     setActive3(!active3);
-    if (active2 === true) setActive2(false);
   };
   const handleClick4 = () => {
+    resetAll();
     setActive4(!active4);
-    if (active3 === true) setActive3(false);
   };
   const handleClick5 = () => {
+    resetAll();
     setActive5(!active5);
-    if (active4 === true) setActive4(false);
   };
   const handleClick6 = () => {
+    resetAll();
     setActive6(!active6);
-    if (active5 === true) setActive5(false);
   };
   const handleClick7 = () => {
+    resetAll();
     setActive7(!active7);
-    if (active6 === true) setActive6(false);
   };
+
+  function resetAll() {
+    setActive(false);
+    setActive2(false);
+    setActive3(false);
+    setActive4(false);
+    setActive5(false);
+    setActive6(false);
+    setActive7(false);
+  }
 
   return (
     <div>
