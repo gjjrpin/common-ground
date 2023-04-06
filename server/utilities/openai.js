@@ -23,9 +23,9 @@ async function isInappropriate(message) {
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
-    max_tokens: 12,
+    max_tokens: 64,
     prompt: `
-"User says ${message}." Is the user breaking the rules? The rules are: you can't be rude. Only respond yes or no.
+"User says ${message}." Is the user breaking the rules? The rules are: "You have to be respectful. You cannot talk about conspiracy theories. You have to use evidence and reason."  Only respond yes or no.
       `,
     temperature: 0.6,
   });

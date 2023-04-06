@@ -14,7 +14,7 @@ router.get("/api/test", (req, res) => {
   res.send(queues);
 });
 
-//-----------------------------------------------------------------------------
+//-----TINDER SORTING ALGORITHM----------------------------------------------------
 
 router.post("/api/topics/:topic_id/agree", (req, res) => {
   const { topic_id } = req.params; // topic id
@@ -24,6 +24,7 @@ router.post("/api/topics/:topic_id/agree", (req, res) => {
     queues[topic_id] = {
       agree: [],
       disagree: [],
+      room_id: uuidv4(),
     };
   }
   // allows us to have a dynamic value in [topic_id] (also called as an accessor)
