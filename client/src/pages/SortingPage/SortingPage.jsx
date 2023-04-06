@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 function SortingPage() {
   const [topics, setTopics] = useState([]);
+  const [currentTopic, setCurrentTopic] = useState({});
+  const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,13 +16,12 @@ function SortingPage() {
   async function getTopics() {
     try {
       const response = await axios.get(`/api/topics`);
-      setTopics(response.data);
+      setTopics(response.data); // array of topics
+      setCurrentTopic(response.data[currentTopicIndex]); // first element in the array.
     } catch (error) {
       console.log(error);
     }
   }
-
-  // "/api/topics/:topic_id/agree"
 
   async function agree(topic_id) {
     try {
@@ -31,6 +32,12 @@ function SortingPage() {
         const room_id = response.data.room_id;
         console.log("match");
         navigate(`/chat/${room_id}/${topic_id}`);
+      } else if (currentTopicIndex < topics.length - 1) {
+        // checking if you're in the end.
+        setCurrentTopicIndex((prevState) => prevState + 1);
+        setCurrentTopic(topics[currentTopicIndex + 1]);
+      } else {
+        console.log("you reached the end!");
       }
     } catch (error) {
       console.log(error);
@@ -46,6 +53,12 @@ function SortingPage() {
         const room_id = response.data.room_id;
         console.log("match");
         navigate(`/chat/${room_id}/${topic_id}`);
+      } else if (currentTopicIndex < topics.length - 1) {
+        // checking if you're in the end.
+        setCurrentTopicIndex((prevState) => prevState + 1);
+        setCurrentTopic(topics[currentTopicIndex + 1]);
+      } else {
+        console.log("you reached the end!");
       }
     } catch (error) {
       console.log(error);
@@ -56,15 +69,12 @@ function SortingPage() {
     <div>
       <div>
         <h1>SORTING PAGE</h1>
-        {topics.map((topic) => {
-          return (
-            <div key={topic.id}>
-              {topic.statement}{" "}
-              <button onClick={() => agree(topic.id)}>Agree</button>
-              <button onClick={() => disagree(topic.id)}>Disagree</button>
-            </div>
-          );
-        })}
+
+        <div>
+          {currentTopic.statement}
+          <button onClick={() => agree(currentTopic.id)}>Agree</button>
+          <button onClick={() => disagree(currentTopic.id)}>Disagree</button>
+        </div>
       </div>
     </div>
   );
