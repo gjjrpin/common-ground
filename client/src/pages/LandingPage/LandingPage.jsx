@@ -7,12 +7,12 @@ import HowItWorks from "../../components/HowItWorks/HowItWorks";
 
 function LandingPage() {
   return (
-    <div className="hero">
+    <div id="home" className="hero">
       <div className="hero__container">
         <div className="hero__column">
           <h1 className="hero__title">COMMON GROUND CHAT</h1>
           <div className="hero__link">
-            <Link className="hero__button" to="/sorting">
+            <Link className="hero__button" to="/login">
               Get Started
             </Link>
             <a className="hero__button" href="/#how-it-works">
