@@ -1,0 +1,43 @@
+.content {
+  padding: 2rem 8rem 2rem 8rem;
+  background-color: lightseagreen;
+
+  &__button {
+    font-size: 1rem;
+    color: darkblue;
+    font-weight: 600;
+    background-color: lightgrey;
+    padding: 0.8rem 1rem;
+    width: 27.09rem;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+
+    &__wrapper {
+      &----left--border {
+        border-left: 6px solid #50a1a7;
+      }
+    }
+    &__text {
+      font-size: 1rem;
+      padding: 0 1rem 1rem;
+      background-color: white;
+      border-left: 6px solid #50a1a7;
+      margin: 0 -0.38rem;
+    }
+    &__info {
+      &--bold {
+        width: 42.67rem;
+        font-weight: 600;
+        color: black;
+        background-color: white;
+        border-left: 6px solid #50a1a7;
+        margin: 0 -0.38rem;
+      }
+    }
+  }
+}
+
+.none {
+  display: none;
+}

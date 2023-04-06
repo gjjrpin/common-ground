@@ -7,21 +7,21 @@ import HowItWorks from "../../components/HowItWorks/HowItWorks";
 
 function LandingPage() {
   return (
-    <div className="content container">
-      <div className="content__container">
-        <div className="content__column">
-          <h1 className="content__title">COMMON GROUND</h1>
-          <div className="content__link">
-            <Link className="content__button" to="/sorting">
+    <div className="hero">
+      <div className="hero__container">
+        <div className="hero__column">
+          <h1 className="hero__title">COMMON GROUND CHAT</h1>
+          <div className="hero__link">
+            <Link className="hero__button" to="/sorting">
               Get Started
             </Link>
-            <a className="content__button" href="/#how-it-works">
+            <a className="hero__button" href="/#how-it-works">
               How It Works
             </a>
           </div>
         </div>
-        <div className="content__column">
-          <img className="content__image" src={hero} alt="hero" />
+        <div className="hero__column">
+          <img className="hero__image" src={hero} alt="hero" />
         </div>
       </div>
       <div id="how-it-works">

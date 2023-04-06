@@ -3,14 +3,17 @@
   justify-content: space-between;
   background-color: darkgray;
   position: fixed;
+  width: 100%;
 
   &__logo {
-    height: 4rem;
+    height: 3rem;
+    padding: 1rem 2rem 1rem 2rem;
   }
   &__list {
     display: flex;
     list-style-type: none;
     gap: 1rem;
+    padding-right: 2rem;
   }
   &__item {
     background-color: lightblue;
