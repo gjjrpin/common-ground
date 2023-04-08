@@ -5,6 +5,9 @@
   padding: 1rem;
   background-color: $alabaster;
   @include tablet {
+    padding: 2rem 6rem 2rem 6rem;
+  }
+  @include desktop {
     padding: 2rem 15rem 2rem 15rem;
   }
   &__header {
@@ -23,20 +26,47 @@
     }
   }
   &__image {
-    height: 5rem;
+    height: 10rem;
+    width: 100%;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.1);
+    }
     @include tablet {
       height: 15rem;
+      width: 50%;
     }
+    // --primary is image on the right.
     &--primary {
       display: none;
+      @include tablet {
+        display: block;
+      }
+    }
+
+    // --secondary is image on the left.
+    &--secondary {
+      display: block;
+      @include tablet {
+        display: none;
+      }
     }
   }
   &__text {
-    font-size: 1rem;
-    line-height: 2rem;
-    padding: 2rem;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    @include tablet {
+      font-size: 1rem;
+      line-height: 2rem;
+      padding: 2rem;
+    }
   }
   &__rules-container {
+    align-items: center;
   }
 
   &__button {
@@ -45,8 +75,8 @@
     font-weight: 600;
     background-color: lightgrey;
     padding: 0.8rem 1rem;
-    width: 27.09rem;
-    text-align: left;
+    width: 17.5rem;
+    text-align: center;
     border: none;
     cursor: pointer;
 

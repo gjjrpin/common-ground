@@ -44,7 +44,7 @@ function initialize(server) {
     socket.on("join_room", ({ room_number, username }) => {
       console.log("someone joined the room: " + room_number);
 
-      // THIS NOTIFIES THAT ANOTHER PERSON JOINED THE ROOM---------------------------
+      // THIS NOTIFIES THAT ANOTHER USER JOINED THE ROOM---------------------------
 
       socket.join(room_number);
       socket.broadcast
@@ -67,6 +67,7 @@ function initialize(server) {
     /* This is the same as connected but sending chat.
        we are destructuring username and message from the ChatPage.jsx component.
        client -> send_chat (message) -> server -> client */
+
     socket.on(
       "send_chat_client",
       async ({ room_number, username, message }) => {

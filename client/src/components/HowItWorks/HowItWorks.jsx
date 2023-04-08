@@ -1,9 +1,9 @@
 import "./HowItWorks.scss";
 import React, { useState } from "react";
-import username from "../../assets/username.svg";
-import prompted from "../../assets/prompted.svg";
-import chatroom from "../../assets/chatroom.svg";
-import openai from "../../assets/openai.svg";
+import username from "../../assets/images/username.svg";
+import prompted from "../../assets/images/prompted.svg";
+import chatroom from "../../assets/images/chatroom.svg";
+import openai from "../../assets/images/openai.svg";
 
 function HowItWorksPage() {
   const [active, setActive] = useState(false);
@@ -67,7 +67,11 @@ function HowItWorksPage() {
           </h3>
         </div>
         <div className="content__image-container">
-          <img className="content__image" src={prompted} alt="prompted" />
+          <img
+            className="content__image content__image--secondary"
+            src={prompted}
+            alt="prompted"
+          />
           <h3 className="content__text">
             You'll then be prompted with a statement that you can either agree
             or disagree with. Keep clicking until you find someone with an
@@ -75,7 +79,7 @@ function HowItWorksPage() {
             someone you don't see eye to eye with.
           </h3>
           <img
-            className="content__image--primary"
+            className="content__image content__image--primary"
             src={prompted}
             alt="prompted"
           />
@@ -90,14 +94,22 @@ function HowItWorksPage() {
           </h3>
         </div>
         <div className="content__image-container">
-          <img className="content__image" src={openai} alt="openai" />
+          <img
+            className="content__image content__image--secondary"
+            src={openai}
+            alt="openai"
+          />
           <h3 className="content__text">
-            I'm leveraging OpenAI's ChatGPT to moderate the conversations and
+            OpenAI's ChatGPT is being used to moderate the conversations and
             ensure that all participants can engage in a respectful and safe
             environment. The AI is "trained" to analyze each message and
             prevents users from sending if they broke the rules below.
           </h3>
-          <img className="content__image--primary" src={openai} alt="openai" />
+          <img
+            className="content__image content__image--primary"
+            src={openai}
+            alt="openai"
+          />
         </div>
         <div className="content__rules-container">
           <h2>Rules:</h2>

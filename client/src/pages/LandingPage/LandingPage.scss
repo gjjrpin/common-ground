@@ -1,5 +1,6 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/colors";
+@import "../../styles/partials/fonts";
 
 .hero {
   &__container {
@@ -12,6 +13,7 @@
     }
   }
   &__header {
+    margin-top: 0;
     font-size: 2rem;
     @include tablet {
       font-size: 4rem;
@@ -26,8 +28,9 @@
     }
   }
   &__column {
-    padding: 2rem;
+    padding: 1rem;
     @include desktop {
+      padding: 2rem;
       width: 50%;
       padding-left: 8rem;
       padding-right: 8rem;
@@ -50,7 +53,7 @@
     }
   }
   &__image {
-    height: 17rem;
+    height: 15rem;
     @include tablet {
       height: 25rem;
     }

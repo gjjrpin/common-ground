@@ -1,5 +1,5 @@
 import "./LandingPage.scss";
-import hero from "../../assets/hero.svg";
+import hero from "../../assets/images/hero.svg";
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";

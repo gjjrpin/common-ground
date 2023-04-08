@@ -164,20 +164,20 @@ function ChatPage({ username, socket }) {
           {
             if (message.username === username) {
               return (
-                <div key={index} style={{ backgroundColor: "red" }}>
+                <div key={index} className="chat__message-user">
                   {message.username}:{message.message}
                 </div>
               );
             } else if (message.username === "Server") {
               return (
-                <div key={index} style={{ backgroundColor: "yellow" }}>
+                <div key={index} className="chat__message-server">
                   {message.username}:{message.message}
                 </div>
               );
               // ----------------------------------------------------
             } else {
               return (
-                <div key={index} style={{ backgroundColor: "lightblue" }}>
+                <div key={index} className="chat__message-participant">
                   {message.username}:{message.message}
                 </div>
               );
