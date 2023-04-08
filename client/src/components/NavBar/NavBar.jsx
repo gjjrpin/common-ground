@@ -5,7 +5,7 @@ import logo from "../../assets/logo/logo.svg";
 function NavBar() {
   return (
     <nav className="nav">
-      <a href="/#home">
+      <a className="nav__logo-container" href="/#home">
         <img className="nav__logo" src={logo} alt="logo" />
       </a>
       <ul className="nav__list">
