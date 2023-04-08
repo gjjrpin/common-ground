@@ -1,5 +1,9 @@
 import "./HowItWorks.scss";
 import React, { useState } from "react";
+import username from "../../assets/username.svg";
+import prompted from "../../assets/prompted.svg";
+import chatroom from "../../assets/chatroom.svg";
+import openai from "../../assets/openai.svg";
 
 function HowItWorksPage() {
   const [active, setActive] = useState(false);
@@ -52,155 +56,184 @@ function HowItWorksPage() {
   return (
     <div>
       <div className="content">
-        <h2>How It Works:</h2>
-        <p>
-          "When you click "Get Started", you'll be prompted a statement that you
-          can either agree or disagree with. You'll need to keep clicking away
-          until you find someone who disagrees with you so much that you just
-          have to talk it out.
-          <br />
-          <br />
-          Think of this like Tinder, but instead of swiping left or right for a
-          quick hookup, you're swiping for someone to argue with.
-          <br />
-          <br />
-          But in all seriousness, this app is all about finding common ground
-          with someone who sees things differently than you do. With so much
-          division in the world, you'd be surprised how many things you'll have
-          in common with someone you don't agree with.
-          <br />
-        </p>
-        <h2>Rules:</h2>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick}
-          >
-            Respect each other
-          </button>
-          <div className={`content__info ${active ? "content__info" : "none"}`}>
-            <p className="content__text">
-              Both parties must show respect for each other at all times, even
-              when discussing controversial or sensitive topics. Insults,
-              personal attacks, or offensive language are not allowed.
-            </p>
-          </div>
+        <h2 className="content__header">How It Works:</h2>
+        <div className="content__image-container">
+          <img className="content__image" src={username} alt="username" />
+          <h3 className="content__text">
+            When you click "Get Started," you'll be asked to enter a username of
+            your choice. You don't have to enter your real name, but please be
+            respectful. Your username needs to be less than 10 letters and
+            contain no special characters or numbers.
+          </h3>
         </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active2 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick2}
-          >
-            Listen actively
-          </button>
-          <div
-            className={`content__info ${active2 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              Both parties must listen to each other's opinions and try to
-              understand their perspective, even if they don't agree with it.
-              Avoid interrupting or talking over the other person.
-            </p>
-          </div>
+        <div className="content__image-container">
+          <img className="content__image" src={prompted} alt="prompted" />
+          <h3 className="content__text">
+            You'll then be prompted with a statement that you can either agree
+            or disagree with. Keep clicking until you find someone with an
+            opposing view. Think of this like Tinder—except you're matching with
+            someone you don't see eye to eye with.
+          </h3>
+          <img
+            className="content__image--primary"
+            src={prompted}
+            alt="prompted"
+          />
         </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active3 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick3}
-          >
-            Stay on topic
-          </button>
-          <div
-            className={`content__info ${active3 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              Both parties must stay on the topic at hand and avoid bringing up
-              unrelated issues. This will help keep the discussion focused and
-              prevent it from devolving into a heated argument.
-            </p>
-          </div>
+        <div className="content__image-container">
+          <img className="content__image" src={chatroom} alt="chatroom" />
+          <h3 className="content__text">
+            After you match with someone, you'll both enter the chat room. The
+            prompt that you both have opposing views on will be at the top of
+            the chat room. The idea is to have a civil conversation with a
+            person that you would otherwise not talk to.
+          </h3>
         </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active4 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick4}
-          >
-            Use evidence and reason
-          </button>
-          <div
-            className={`content__info ${active4 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              Both parties should back up their arguments with evidence and
-              reason. Personal opinions are valid, but they should be supported
-              by facts and logic.
-            </p>
-          </div>
+        <div className="content__image-container">
+          <img className="content__image" src={openai} alt="openai" />
+          <h3 className="content__text">
+            I'm leveraging OpenAI's ChatGPT to moderate the conversations and
+            ensure that all participants can engage in a respectful and safe
+            environment. The AI is "trained" to analyze each message and
+            prevents users from sending if they broke the rules below.
+          </h3>
+          <img className="content__image--primary" src={openai} alt="openai" />
         </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active5 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick5}
-          >
-            Avoid fallacies
-          </button>
-          <div
-            className={`content__info ${active5 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              Both parties should avoid using logical fallacies, such as ad
-              hominem attacks, straw man arguments, or slippery slope arguments.
-              These tactics can derail the conversation and prevent productive
-              dialogue.
-            </p>
+        <div className="content__rules-container">
+          <h2>Rules:</h2>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick}
+            >
+              Respect each other
+            </button>
+            <div
+              className={`content__info ${active ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                Both parties must show respect for each other at all times, even
+                when discussing controversial or sensitive topics. Insults,
+                personal attacks, or offensive language are not allowed.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active6 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick6}
-          >
-            Take breaks if necessary
-          </button>
-          <div
-            className={`content__info ${active6 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              If the discussion becomes too heated or emotional, both parties
-              should be able to take a break to cool off and regroup before
-              continuing the conversation.
-            </p>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active2 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick2}
+            >
+              Listen actively
+            </button>
+            <div
+              className={`content__info ${active2 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                Both parties must listen to each other's opinions and try to
+                understand their perspective, even if they don't agree with it.
+                Avoid interrupting or talking over the other person.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="content__wrapper">
-          <button
-            className={`content__button ${
-              active7 ? "content__info--bold" : "content__button"
-            }`}
-            onClick={handleClick7}
-          >
-            Agree to disagree
-          </button>
-          <div
-            className={`content__info ${active7 ? "content__info" : "none"}`}
-          >
-            <p className="content__text">
-              If both parties cannot come to an agreement, they should agree to
-              disagree respectfully. It is possible to have a civil discourse
-              without necessarily changing one's own opinion.
-            </p>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active3 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick3}
+            >
+              Stay on topic
+            </button>
+            <div
+              className={`content__info ${active3 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                Both parties must stay on the topic at hand and avoid bringing
+                up unrelated issues. This will help keep the discussion focused
+                and prevent it from devolving into a heated argument.
+              </p>
+            </div>
+          </div>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active4 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick4}
+            >
+              Use evidence and reason
+            </button>
+            <div
+              className={`content__info ${active4 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                Both parties should back up their arguments with evidence and
+                reason. Personal opinions are valid, but they should be
+                supported by facts and logic.
+              </p>
+            </div>
+          </div>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active5 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick5}
+            >
+              Avoid fallacies
+            </button>
+            <div
+              className={`content__info ${active5 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                Both parties should avoid using logical fallacies, such as ad
+                hominem attacks, straw man arguments, or slippery slope
+                arguments. These tactics can derail the conversation and prevent
+                productive dialogue.
+              </p>
+            </div>
+          </div>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active6 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick6}
+            >
+              Take breaks if necessary
+            </button>
+            <div
+              className={`content__info ${active6 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                If the discussion becomes too heated or emotional, both parties
+                should be able to take a break to cool off and regroup before
+                continuing the conversation.
+              </p>
+            </div>
+          </div>
+          <div className="content__wrapper">
+            <button
+              className={`content__button ${
+                active7 ? "content__info--bold" : "content__button"
+              }`}
+              onClick={handleClick7}
+            >
+              Agree to disagree
+            </button>
+            <div
+              className={`content__info ${active7 ? "content__info" : "none"}`}
+            >
+              <p className="content__text">
+                If both parties cannot come to an agreement, they should agree
+                to disagree respectfully. It is possible to have a civil
+                discourse without necessarily changing one's own opinion.
+              </p>
+            </div>
           </div>
         </div>
       </div>

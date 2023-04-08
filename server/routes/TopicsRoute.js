@@ -2,6 +2,7 @@
 const express = require("express");
 const knex = require("knex")(require("../knexfile"));
 const { v4: uuidv4 } = require("uuid");
+const socketio = require("../utilities/socketio");
 
 // We are using router here to manage the endpoint.
 const router = express.Router();
@@ -27,6 +28,7 @@ router.post("/api/topics/:topic_id/agree", (req, res) => {
       room_id: uuidv4(),
     };
   }
+
   // allows us to have a dynamic value in [topic_id] (also called as an accessor)
   // push allows us add another username in the array. "push" is a reserved word.
   queues[topic_id].agree.push(username);
@@ -34,7 +36,13 @@ router.post("/api/topics/:topic_id/agree", (req, res) => {
   if (queues[topic_id].disagree.length > 0) {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
+    const room_id = uuidv4();
+
     console.log(`${agreer} matches ${disagreer}`);
+
+    socketio.sendUserToRoom(agreer, room_id, topic_id);
+    socketio.sendUserToRoom(disagreer, room_id, topic_id);
+
     res.send({ room_id: uuidv4() });
     return;
   }
@@ -48,20 +56,26 @@ router.post("/api/topics/:topic_id/disagree", (req, res) => {
   const { topic_id } = req.params; // topic id
   const { username } = req.body;
 
-  if (!queues[topic_id]) {
+  if (!queues[topic_id]) { 
     queues[topic_id] = {
       agree: [],
       disagree: [],
     };
   }
-  // allows us to have a dynamic value in [topic_id] (also called as an accessor)
+  // allows us to have a dynamic value in [topic_id] (also called as an accessor) 
   // push allows us add another username in the array. "push" is a reserved word.
   queues[topic_id].disagree.push(username);
 
   if (queues[topic_id].agree.length > 0) {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
+    const room_id = uuidv4();
+
     console.log(`${agreer} matches ${disagreer}`);
+
+    socketio.sendUserToRoom(agreer, room_id,topic_id);
+    socketio.sendUserToRoom(disagreer, room_id,topic_id);
+
     // here we send them to chat.
     res.send({ room_id: uuidv4() });
     return;

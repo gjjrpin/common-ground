@@ -3,15 +3,23 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SortingPage({ username }) {
+function SortingPage({ username, socket }) {
   const [topics, setTopics] = useState([]);
   const [currentTopic, setCurrentTopic] = useState({});
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
   const navigate = useNavigate();
 
+  //------------------------------------------------------------
+
   useEffect(() => {
     getTopics();
+
+    socket.on("go_to_room", ({ room_id, topic_id }) => {
+      goToRoom(room_id, topic_id);
+    });
   }, []);
+
+  //------------------------------------------------------------
 
   async function getTopics() {
     try {
@@ -26,12 +34,12 @@ function SortingPage({ username }) {
   async function agree(topic_id) {
     try {
       const response = await axios.post(`/api/topics/${topic_id}/agree`, {
-        username: "Test",
+        username: username,
       });
       if (response.data.room_id) {
         const room_id = response.data.room_id;
         console.log("match");
-        navigate(`/chat/${room_id}/${topic_id}`);
+        //navigate(`/chat/${room_id}/${topic_id}`);
       } else if (currentTopicIndex < topics.length - 1) {
         // checking if you're in the end.
         setCurrentTopicIndex((prevState) => prevState + 1);
@@ -47,12 +55,12 @@ function SortingPage({ username }) {
   async function disagree(topic_id) {
     try {
       const response = await axios.post(`/api/topics/${topic_id}/disagree`, {
-        username: "Test",
+        username: username,
       });
       if (response.data.room_id) {
         const room_id = response.data.room_id;
         console.log("match");
-        navigate(`/chat/${room_id}/${topic_id}`);
+        //navigate(`/chat/${room_id}/${topic_id}`);
       } else if (currentTopicIndex < topics.length - 1) {
         // checking if you're in the end.
         setCurrentTopicIndex((prevState) => prevState + 1);
@@ -65,11 +73,17 @@ function SortingPage({ username }) {
     }
   }
 
+  function goToRoom(room_id, topic_id) {
+    navigate(`/chat/${room_id}/${topic_id}`);
+  }
+
+  //------------------------------------------------------------
+
   return (
     <div>
       <div className="sorting">
         <div className="sorting__container">
-          <h2>{username}</h2>
+          <h2 className="sorting__username">{username}</h2>
           <h2 className="sorting__prompt">{currentTopic.statement}</h2>
           <div className="sorting__button-container">
             <button

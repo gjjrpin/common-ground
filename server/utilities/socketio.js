@@ -2,6 +2,7 @@ const socket = require("socket.io");
 const openai = require("./openai.js");
 
 let io;
+let connected_users = {};
 
 // express -> HTTP
 // socket.io -> socket protocol
@@ -30,6 +31,12 @@ function initialize(server) {
       // This is the person that disconnects
       socket.broadcast.emit("user_disconnected", { username: "User" });
     });
+    // THIS IS STORING THE USERNAME AND SOCKET ID TO connected_users
+    // our client will emit "user_connected" with their username
+    socket.on("user_connected", ({ username }) => {
+      // console.log("new user", username);
+      connected_users[username] = socket.id;
+    });
 
     // THIS IS THE CHAT ROOMS----------------------------------------------------
     // https://socket.io/docs/v4/rooms/#joining-and-leaving
@@ -45,7 +52,18 @@ function initialize(server) {
         .emit("new_user_joined_room", { room_number, username });
     });
 
-    // THE CLIENT IS SENDING A MESSAGE HERE-------------------------------------
+    // THIS DISCONNECTS THE CHAT----------------------------------------------------
+
+    socket.on("leave_room", ({ room_number, username }) => {
+      console.log("someone left the room: " + room_number);
+
+      socket.leave(room_number);
+      socket.broadcast
+        .to(room_number)
+        .emit("user_left_room", { room_number, username });
+    });
+
+    // THE CLIENT IS SENDING A MESSAGE HERE-----------------------------------------
     /* This is the same as connected but sending chat.
        we are destructuring username and message from the ChatPage.jsx component.
        client -> send_chat (message) -> server -> client */
@@ -76,4 +94,15 @@ function initialize(server) {
   });
 }
 
-module.exports = { initialize };
+function getIo() {
+  return io;
+}
+
+function sendUserToRoom(username, room_id, topic_id) {
+  io.to(connected_users[username]).emit("go_to_room", {
+    room_id: room_id,
+    topic_id: topic_id,
+  });
+}
+
+module.exports = { initialize, getIo, sendUserToRoom };

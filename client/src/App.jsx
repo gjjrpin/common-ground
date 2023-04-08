@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SortingPage from "./pages/SortingPage/SortingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useState } from "react";
+import { socket } from "./socket";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -22,13 +23,18 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/login"
-          element={<LoginPage chooseUsername={chooseUsername} />}
+          element={
+            <LoginPage chooseUsername={chooseUsername} socket={socket} />
+          }
         />
         <Route
           path="/chat/:room_id/:topic_id"
-          element={<ChatPage username={username} />}
+          element={<ChatPage username={username} socket={socket} />}
         />
-        <Route path="/sorting" element={<SortingPage username={username} />} />
+        <Route
+          path="/sorting"
+          element={<SortingPage username={username} socket={socket} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
         <Route />
       </Routes>

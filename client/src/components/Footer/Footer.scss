@@ -1,22 +1,26 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
 .footer {
-  background-color: grey;
+  background-color: $black;
   margin: 0;
-  &__container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
+  color: $white;
+  &__main-container {
+    padding: 1rem;
+    justify-content: center;
+    @include tablet {
+      display: flex;
+    }
   }
   &__logo-container {
   }
   &__logo-link {
   }
   &__logo {
-    height: 3rem;
+    height: 5rem;
   }
-  &__main-container {
-  }
+
   &__list-container {
-    display: flex;
     gap: 1rem;
   }
   &__list {

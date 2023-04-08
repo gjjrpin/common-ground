@@ -1,14 +1,37 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
 .hero {
   &__container {
-    display: flex;
     height: 100vh;
-    align-items: center;
-    background-color: lightpink;
+    background-color: $white;
+    @include tablet {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+    }
+  }
+  &__header {
+    font-size: 2rem;
+    @include tablet {
+      font-size: 4rem;
+      color: $black;
+    }
+  }
+  &__sub-header {
+    font-size: 0.8rem;
+    @include tablet {
+      font-size: 1.7rem;
+      color: $black;
+    }
   }
   &__column {
-    width: 50%;
-    padding-left: 8rem;
-    padding-right: 8rem;
+    padding: 2rem;
+    @include desktop {
+      width: 50%;
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
   }
   &__link {
     display: flex;
@@ -16,15 +39,20 @@
   }
   &__button {
     text-decoration: none;
-    color: black;
-    background-color: lightblue;
-    padding: 1.5rem;
+    color: $white;
+    background-color: $purple;
+    height: 0.5rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
     &:hover {
-      background-color: purple;
+      background-color: $dark-purple;
       cursor: pointer;
     }
   }
   &__image {
-    height: 20rem;
+    height: 17rem;
+    @include tablet {
+      height: 25rem;
+    }
   }
 }

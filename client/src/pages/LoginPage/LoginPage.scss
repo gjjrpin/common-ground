@@ -1,5 +1,65 @@
-.error {
-  outline-color: red;
-  outline-style: solid;
-  outline-width: 0.2rem;
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
+.login {
+  padding: 1rem 1rem;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include tablet {
+    height: 90vh;
+  }
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__title {
+    font-size: 1.35rem;
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+  &__form {
+    padding: 0.4rem;
+    padding-left: 1rem;
+    border-radius: 1.5rem;
+    border-style: solid;
+    border-width: 0.1rem;
+    @include tablet {
+      width: 16rem;
+    }
+  }
+  &__button {
+    margin-left: 1rem;
+    border: none;
+    color: $white;
+    background-color: $purple;
+    display: flex;
+    align-items: center;
+    border-radius: 1.5rem;
+    width: 3.5rem;
+    &:hover {
+      background-color: $dark-purple;
+      cursor: pointer;
+    }
+    @include tablet {
+      height: 0.5rem;
+      width: 5rem;
+      padding: 1.3rem;
+      font-size: 1.2rem;
+    }
+  }
+  &__error {
+    outline-color: red;
+    outline-style: solid;
+    outline-width: 0.09rem;
+  }
+  &__error-message {
+    font-size: 0.75rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
 }

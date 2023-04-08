@@ -10,7 +10,11 @@ function LandingPage() {
     <div id="home" className="hero">
       <div className="hero__container">
         <div className="hero__column">
-          <h1 className="hero__title">COMMON GROUND CHAT</h1>
+          <h1 className="hero__header">Bridge the Divide</h1>
+          <h3 className="hero__sub-header">
+            Connect with people holding opposing views through honest and
+            respectful conversations.
+          </h3>
           <div className="hero__link">
             <Link className="hero__button" to="/login">
               Get Started

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { socket } from "../../socket";
 import "./ChatPage.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
-function ChatPage({ username }) {
-  // ---------------------------------------------------------------------------
+function ChatPage({ username, socket }) {
+  // localhost:3000/chat/:room_id/:topic_id
   const { room_id, topic_id } = useParams();
 
   // copied from socket.io website. https://socket.io/how-to/use-with-react
@@ -20,6 +20,9 @@ function ChatPage({ username }) {
 
   const endOfMessageRef = useRef();
 
+  // redirect to home page
+  const navigate = useNavigate();
+
   // ---------------------------------------------------------------------------
 
   // auto-scroll down effect.
@@ -29,14 +32,6 @@ function ChatPage({ username }) {
 
   useEffect(() => {
     joinRoom(room_id);
-
-    function onConnect() {
-      setIsConnected(true);
-    }
-
-    function onDisconnect() {
-      setIsConnected(false);
-    }
 
     // This is how the sockets connect using useEffect
     socket.on("connect", onConnect);
@@ -65,7 +60,16 @@ function ChatPage({ username }) {
       // todo
       setMessages((previousMessages) => [
         ...previousMessages,
-        { username: "Server", message: `${username} has Joined` },
+        { username: "Server", message: `${username} has joined` },
+      ]);
+    });
+
+    // THIS IS THE USER DISCONNECTING--------------------------------------------
+
+    socket.on("user_left_room", ({ room_number, username }) => {
+      setMessages((previousMessages) => [
+        ...previousMessages,
+        { username: "Server", message: `${username} has left` },
       ]);
     });
 
@@ -87,6 +91,15 @@ function ChatPage({ username }) {
   }
 
   // THIS IS CREATING A CHAT ROOM ------------------------------------------
+
+  function onConnect() {
+    setIsConnected(true);
+  }
+
+  function onDisconnect() {
+    handleDisconnect(room_id);
+    setIsConnected(false);
+  }
 
   function joinRoom(roomid) {
     const roomDetails = {
@@ -119,6 +132,17 @@ function ChatPage({ username }) {
 
   function scrollToBottom() {
     endOfMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // ---------------------------------------------------------------------------
+
+  function handleDisconnect(roomid) {
+    const roomDetails = {
+      room_number: roomid,
+      username: username,
+    };
+    socket.emit("leave_room", roomDetails);
+    navigate(`/`);
   }
 
   // ---------------------------------------------------------------------------
@@ -162,15 +186,22 @@ function ChatPage({ username }) {
         )}
         <div ref={endOfMessageRef}></div>
       </div>
-      <h3>Message</h3>
-      <textarea
-        className="chat__message-box"
-        value={currentMessage}
-        onChange={handleOnChangeCurrentMessage}
-      ></textarea>
-      <button className="chat__button" onClick={handleSendMessage}>
-        Send
-      </button>
+      <div className="chat__text-container">
+        <button
+          className="chat__button"
+          onClick={() => handleDisconnect(room_id)}
+        >
+          Disconnect
+        </button>
+        <textarea
+          className="chat__message-box"
+          value={currentMessage}
+          onChange={handleOnChangeCurrentMessage}
+        ></textarea>
+        <button className="chat__button" onClick={handleSendMessage}>
+          Send
+        </button>
+      </div>
     </div>
   );
 }

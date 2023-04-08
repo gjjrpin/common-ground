@@ -1,9 +1,8 @@
 import "./LoginPage.scss";
-import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage({ chooseUsername }) {
+function LoginPage({ chooseUsername, socket }) {
   const [username, setUsername] = useState("");
   // Error state
   const [error, setError] = useState(false);
@@ -17,6 +16,8 @@ function LoginPage({ chooseUsername }) {
       // stops everything
       return;
     }
+    socket.emit("user_connected", { username });
+
     chooseUsername(username);
     navigate("/sorting");
   }
@@ -42,28 +43,30 @@ function LoginPage({ chooseUsername }) {
 
   return (
     <>
-      <div
-        style={{
-          // Testing the formatting. NEED TO CHANGE THIS!!!
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="login">
         <form onSubmit={handleOnSubmit}>
-          <h2>Username:</h2>
-          <input
-            className={`form-username ${error ? "error" : ""}`}
-            type="text"
-            onChange={handleOnChange}
-          />
+          <h2 className="login__title">Please enter a username:</h2>
           {/* conditional rendering */}
-          {error && <p>You have entered invalid values! Please try again.</p>}
-          <button type="submit">Send</button>
+          {error && (
+            <p className="login__error-message">
+              Invalid values! Username should not include special characters or
+              numbers, and should be less than 10 characters in length.
+            </p>
+          )}
+          <div className="login__container">
+            <input
+              className={`login__form form-username ${
+                error ? "login__error" : ""
+              }`}
+              type="text"
+              onChange={handleOnChange}
+            />
+            <button className="login__button" type="submit">
+              Enter
+            </button>
+          </div>
         </form>
       </div>
-      <Footer />
     </>
   );
 }

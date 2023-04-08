@@ -1,34 +1,43 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
 .nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: darkgray;
-  position: fixed;
+  background-color: $black;
+  color: $white;
   width: 100%;
 
+  @include tablet {
+    display: flex;
+    align-items: end;
+    position: fixed;
+  }
+
   &__logo {
-    height: 3rem;
-    padding: 1rem 2rem 1rem 2rem;
+    height: 5rem;
+    justify-content: center;
+    @include tablet {
+      padding-left: 6.5rem;
+    }
   }
   &__list {
     display: flex;
     list-style-type: none;
     gap: 1rem;
-    padding-right: 2rem;
+    padding-right: 8rem;
   }
   &__item {
-    background-color: lightblue;
+    // background-color: $purple;
     padding: 1rem;
+    border-radius: 1.5rem;
 
     &:hover {
-      background-color: purple;
+      // background-color: $dark-purple;
       cursor: pointer;
     }
   }
   &__link {
     text-decoration: none;
-    color: black;
+    color: $white;
     padding: 1rem;
-
-    background-color: red;
   }
 }

@@ -5,21 +5,16 @@ import logo from "../../assets/logo.svg";
 function NavBar() {
   return (
     <nav className="nav">
-      <Link>
+      <a href="/#home">
         <img className="nav__logo" src={logo} alt="logo" />
-      </Link>
+      </a>
       <ul className="nav__list">
-        <li className="nav__item">
-          <a className="nav__link" href="/#home">
-            Home
-          </a>
-        </li>
-        <li className="nav__item">
+        <li className="nav__item nav__item--active">
           <Link className="nav__link" to="/login">
             Get Started
           </Link>
         </li>
-        <li className="nav__item">
+        <li className="nav__item nav__item--margin">
           <a className="nav__link" href="/#how-it-works">
             How It Works
           </a>
