@@ -3,11 +3,9 @@
 @import "../../styles/partials/fonts";
 
 .chat {
-  @include tablet {
-    padding: 8rem;
-  }
+  padding: 0rem;
   @include desktop {
-    padding: 8rem 25rem 8rem 25rem;
+    padding: 0 25rem 0 25rem;
   }
   &__prompt-container {
     background-color: $silver;
@@ -17,17 +15,22 @@
     margin: 0;
     display: flex;
     justify-content: center;
+    background-color: $purple;
+    padding-left: 1rem;
+    padding-right: 1rem;
     @include tablet {
-      font-size: 1.2rem;
-    }
-    @include desktop {
-      font-size: 1.7rem;
+      font-size: 1.3rem;
     }
   }
   &__message-container {
-    height: 19rem;
+    height: 55vh;
     overflow: auto;
     background-color: $alabaster;
+    border-radius: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    @include tablet {
+      height: 65vh;
+    }
   }
   &__message-user {
     background-color: $purple;
@@ -57,12 +60,11 @@
   &__message-box {
     resize: none;
     width: 100%;
-    height: 2rem;
     border-radius: 1.5rem;
+    font-family: "AvenirNext LT Pro";
   }
   &__button {
     margin: 0.5rem;
-    padding: 1rem;
     border: none;
     color: $white;
     background-color: $purple;
@@ -75,8 +77,7 @@
     }
     @include tablet {
       height: 0.5rem;
-      width: 8rem;
-      padding: 1.3rem;
+      padding: 1rem;
       font-size: 1.2rem;
     }
   }

@@ -9,7 +9,10 @@
   align-items: center;
   justify-content: center;
   @include tablet {
-    height: 90vh;
+    height: 80vh;
+  }
+  @include desktop {
+    height: 50vh;
   }
   &__container {
     display: flex;

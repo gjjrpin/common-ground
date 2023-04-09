@@ -4,49 +4,73 @@
 
 .hero {
   &__container {
-    height: 100vh;
+    margin-top: 2rem;
+    height: 80vh;
     background-color: $white;
+    display: flex;
+    flex-direction: column;
+
     @include tablet {
-      display: flex;
-      height: 100vh;
+      flex-direction: row;
       align-items: center;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+    @include desktop {
       padding-left: 8rem;
       padding-right: 8rem;
     }
   }
   &__header {
-    margin-top: 0;
+    margin: 0;
     font-size: 2rem;
+    color: $dark-black;
     @include tablet {
+      font-size: 3rem;
+    }
+    @include desktop {
       font-size: 4rem;
-      color: $black;
+      text-align: left;
     }
   }
   &__sub-header {
     font-size: 0.8rem;
+    color: $black;
     @include tablet {
+      font-size: 1rem;
+    }
+    @include desktop {
       font-size: 1.7rem;
-      color: $black;
+      text-align: left;
     }
   }
   &__column {
     padding: 1rem;
+    text-align: center;
     @include desktop {
       padding: 2rem;
       width: 50%;
     }
   }
-  &__link {
-    display: flex;
-    gap: 1rem;
+  &__links {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    @include desktop {
+      justify-content: flex-start;
+    }
   }
   &__button {
     text-decoration: none;
     color: $white;
     background-color: $purple;
-    height: 0.5rem;
-    padding: 1rem;
+    padding: 0.8rem 1rem 0.8rem 1rem;
     border-radius: 1.5rem;
+    vertical-align: middle;
     &:hover {
       background-color: $dark-purple;
       cursor: pointer;
@@ -54,8 +78,15 @@
   }
   &__image {
     height: 15rem;
+    width: 100%;
     @include tablet {
-      height: 25rem;
+      height: 20rem;
+    }
+    @include desktop {
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
     }
   }
 }

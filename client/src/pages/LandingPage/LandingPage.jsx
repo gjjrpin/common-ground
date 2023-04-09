@@ -15,7 +15,7 @@ function LandingPage() {
             Connect with people holding opposing views through honest and
             respectful conversations.
           </h3>
-          <div className="hero__link">
+          <div className="hero__links">
             <Link className="hero__button" to="/login">
               Get Started
             </Link>

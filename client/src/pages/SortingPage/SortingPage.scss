@@ -13,6 +13,7 @@
     padding: 3rem 3rem;
   }
   @include desktop {
+    height: 50vh;
     padding: 5rem 5rem;
   }
   &__container {
