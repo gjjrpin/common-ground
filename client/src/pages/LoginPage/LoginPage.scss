@@ -3,20 +3,18 @@
 @import "../../styles/partials/fonts";
 
 .login {
-  padding: 1rem 1rem;
   height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
   @include tablet {
-    height: 80vh;
-  }
-  @include desktop {
     height: 50vh;
   }
+
   &__container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    gap: 1rem;
   }
 
   &__title {
@@ -26,8 +24,7 @@
     }
   }
   &__form {
-    padding: 0.4rem;
-    padding-left: 1rem;
+    padding: 0.4rem 1rem;
     border-radius: 1.5rem;
     border-style: solid;
     border-width: 0.1rem;
@@ -36,29 +33,23 @@
     }
   }
   &__button {
-    margin-left: 1rem;
     border: none;
     color: $white;
     background-color: $purple;
-    display: flex;
-    align-items: center;
     border-radius: 1.5rem;
-    width: 3.5rem;
+    padding: 0.5rem 1rem;
     &:hover {
       background-color: $dark-purple;
       cursor: pointer;
     }
     @include tablet {
-      height: 0.5rem;
-      width: 5rem;
-      padding: 1.3rem;
       font-size: 1.2rem;
     }
   }
   &__error {
     outline-color: red;
     outline-style: solid;
-    outline-width: 0.09rem;
+    outline-width: 0.1rem;
   }
   &__error-message {
     font-size: 0.75rem;

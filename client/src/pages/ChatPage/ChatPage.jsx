@@ -164,21 +164,30 @@ function ChatPage({ username, socket }) {
           {
             if (message.username === username) {
               return (
-                <div key={index} className="chat__message-user">
-                  {message.username}:{message.message}
+                <div
+                  key={index}
+                  className="chat__message-bubble chat__message-user"
+                >
+                  {message.username}: {message.message}
                 </div>
               );
             } else if (message.username === "Server") {
               return (
-                <div key={index} className="chat__message-server">
-                  {message.username}:{message.message}
+                <div
+                  key={index}
+                  className="chat__message-bubble chat__message-server"
+                >
+                  {message.username}: {message.message}
                 </div>
               );
               // ----------------------------------------------------
             } else {
               return (
-                <div key={index} className="chat__message-participant">
-                  {message.username}:{message.message}
+                <div
+                  key={index}
+                  className="chat__message-bubble chat__message-participant"
+                >
+                  {message.username}: {message.message}
                 </div>
               );
             }
@@ -191,15 +200,16 @@ function ChatPage({ username, socket }) {
           className="chat__button"
           onClick={() => handleDisconnect(room_id)}
         >
-          Disconnect
+          <i className="chat__icon chat__icon--disconnect"></i>
         </button>
         <textarea
           className="chat__message-box"
           value={currentMessage}
           onChange={handleOnChangeCurrentMessage}
+          rows="1"
         ></textarea>
         <button className="chat__button" onClick={handleSendMessage}>
-          Send
+          <i className="chat__icon chat__icon--send"></i>
         </button>
       </div>
     </div>
