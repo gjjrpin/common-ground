@@ -5,17 +5,16 @@
   padding: 1rem;
   background-color: $alabaster;
   @include tablet {
-    padding: 2rem 6rem 2rem 6rem;
+    padding: 2rem 4rem 4rem 4rem;
   }
   @include desktop {
-    padding: 2rem 15rem 2rem 15rem;
+    padding: 2rem 12rem 2rem 12rem;
   }
   &__header {
     font-size: 1.5rem;
     text-align: center;
     @include tablet {
       font-size: 3rem;
-      margin-top: 5rem;
     }
   }
   &__image-container {
@@ -28,13 +27,15 @@
   &__image {
     height: 10rem;
     width: 100%;
-    transition: 0.3s;
-    &:hover {
-      transform: scale(1.1);
-    }
     @include tablet {
       height: 15rem;
       width: 50%;
+    }
+    @include desktop {
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
     }
     // --primary is image on the right.
     &--primary {
@@ -55,52 +56,54 @@
   &__text {
     font-size: 0.8rem;
     line-height: 1.5rem;
-    transition: 0.3s;
-    &:hover {
-      transform: scale(1.1);
-    }
+    text-align: center;
     @include tablet {
       font-size: 1rem;
       line-height: 2rem;
       padding: 2rem;
+      text-align: start;
+    }
+    @include desktop {
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
     }
   }
   &__rules-container {
     align-items: center;
+    @include tablet {
+      margin-left: 7rem;
+      margin-right: 7rem;
+    }
+    @include desktop {
+      margin: 2rem 17rem 5rem 17rem;
+    }
+  }
+  &__rules-header {
+    text-align: center;
+    @include tablet {
+      font-size: 3rem;
+      margin-top: 0;
+    }
   }
 
   &__button {
     font-size: 1rem;
-    color: darkblue;
-    font-weight: 600;
-    background-color: lightgrey;
-    padding: 0.8rem 1rem;
-    width: 17.5rem;
-    text-align: center;
+    color: $white;
+    font-weight: bold;
+    background-color: $purple;
+    width: 100%;
     border: none;
-    cursor: pointer;
-
-    &__wrapper {
-      &----left--border {
-        border-left: 6px solid #50a1a7;
-      }
+    border-radius: 1.5rem;
+    padding: 0.8rem 1rem;
+    margin: 0.3rem;
+    &:hover {
+      background-color: $dark-purple;
+      cursor: pointer;
     }
-    &__text {
-      font-size: 1rem;
-      padding: 0 1rem 1rem;
-      background-color: white;
-      border-left: 6px solid #50a1a7;
-      margin: 0 -0.38rem;
-    }
-    &__info {
-      &--bold {
-        width: 42.67rem;
-        font-weight: 600;
-        color: black;
-        background-color: white;
-        border-left: 6px solid #50a1a7;
-        margin: 0 -0.38rem;
-      }
+    @include tablet {
+      margin: 0.5rem;
     }
   }
 }

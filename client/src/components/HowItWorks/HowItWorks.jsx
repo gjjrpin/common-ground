@@ -11,8 +11,6 @@ function HowItWorksPage() {
   const [active3, setActive3] = useState(false);
   const [active4, setActive4] = useState(false);
   const [active5, setActive5] = useState(false);
-  const [active6, setActive6] = useState(false);
-  const [active7, setActive7] = useState(false);
 
   const handleClick = () => {
     resetAll();
@@ -34,14 +32,6 @@ function HowItWorksPage() {
     resetAll();
     setActive5(!active5);
   };
-  const handleClick6 = () => {
-    resetAll();
-    setActive6(!active6);
-  };
-  const handleClick7 = () => {
-    resetAll();
-    setActive7(!active7);
-  };
 
   function resetAll() {
     setActive(false);
@@ -49,8 +39,6 @@ function HowItWorksPage() {
     setActive3(false);
     setActive4(false);
     setActive5(false);
-    setActive6(false);
-    setActive7(false);
   }
 
   return (
@@ -112,8 +100,8 @@ function HowItWorksPage() {
           />
         </div>
         <div className="content__rules-container">
-          <h2>Rules:</h2>
-          <div className="content__wrapper">
+          <h2 className="content__rules-header">Rules:</h2>
+          <div>
             <button
               className={`content__button ${
                 active ? "content__info--bold" : "content__button"
@@ -132,36 +120,17 @@ function HowItWorksPage() {
               </p>
             </div>
           </div>
-          <div className="content__wrapper">
+          <div>
             <button
               className={`content__button ${
                 active2 ? "content__info--bold" : "content__button"
               }`}
               onClick={handleClick2}
             >
-              Listen actively
-            </button>
-            <div
-              className={`content__info ${active2 ? "content__info" : "none"}`}
-            >
-              <p className="content__text">
-                Both parties must listen to each other's opinions and try to
-                understand their perspective, even if they don't agree with it.
-                Avoid interrupting or talking over the other person.
-              </p>
-            </div>
-          </div>
-          <div className="content__wrapper">
-            <button
-              className={`content__button ${
-                active3 ? "content__info--bold" : "content__button"
-              }`}
-              onClick={handleClick3}
-            >
               Stay on topic
             </button>
             <div
-              className={`content__info ${active3 ? "content__info" : "none"}`}
+              className={`content__info ${active2 ? "content__info" : "none"}`}
             >
               <p className="content__text">
                 Both parties must stay on the topic at hand and avoid bringing
@@ -170,17 +139,17 @@ function HowItWorksPage() {
               </p>
             </div>
           </div>
-          <div className="content__wrapper">
+          <div>
             <button
               className={`content__button ${
-                active4 ? "content__info--bold" : "content__button"
+                active3 ? "content__info--bold" : "content__button"
               }`}
-              onClick={handleClick4}
+              onClick={handleClick3}
             >
               Use evidence and reason
             </button>
             <div
-              className={`content__info ${active4 ? "content__info" : "none"}`}
+              className={`content__info ${active3 ? "content__info" : "none"}`}
             >
               <p className="content__text">
                 Both parties should back up their arguments with evidence and
@@ -189,17 +158,17 @@ function HowItWorksPage() {
               </p>
             </div>
           </div>
-          <div className="content__wrapper">
+          <div>
             <button
               className={`content__button ${
-                active5 ? "content__info--bold" : "content__button"
+                active4 ? "content__info--bold" : "content__button"
               }`}
-              onClick={handleClick5}
+              onClick={handleClick4}
             >
               Avoid fallacies
             </button>
             <div
-              className={`content__info ${active5 ? "content__info" : "none"}`}
+              className={`content__info ${active4 ? "content__info" : "none"}`}
             >
               <p className="content__text">
                 Both parties should avoid using logical fallacies, such as ad
@@ -209,36 +178,17 @@ function HowItWorksPage() {
               </p>
             </div>
           </div>
-          <div className="content__wrapper">
+          <div>
             <button
               className={`content__button ${
-                active6 ? "content__info--bold" : "content__button"
+                active5 ? "content__info--bold" : "content__button"
               }`}
-              onClick={handleClick6}
-            >
-              Take breaks if necessary
-            </button>
-            <div
-              className={`content__info ${active6 ? "content__info" : "none"}`}
-            >
-              <p className="content__text">
-                If the discussion becomes too heated or emotional, both parties
-                should be able to take a break to cool off and regroup before
-                continuing the conversation.
-              </p>
-            </div>
-          </div>
-          <div className="content__wrapper">
-            <button
-              className={`content__button ${
-                active7 ? "content__info--bold" : "content__button"
-              }`}
-              onClick={handleClick7}
+              onClick={handleClick5}
             >
               Agree to disagree
             </button>
             <div
-              className={`content__info ${active7 ? "content__info" : "none"}`}
+              className={`content__info ${active5 ? "content__info" : "none"}`}
             >
               <p className="content__text">
                 If both parties cannot come to an agreement, they should agree
