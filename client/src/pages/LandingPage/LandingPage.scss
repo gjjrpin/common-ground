@@ -4,11 +4,11 @@
 
 .hero {
   &__container {
-    margin-top: 2rem;
+    padding-top: 2rem;
     height: 80vh;
-    background-color: $white;
     display: flex;
     flex-direction: column;
+    background-color: $white;
 
     @include tablet {
       flex-direction: row;
@@ -24,7 +24,7 @@
   &__header {
     margin: 0;
     font-size: 2rem;
-    color: $dark-black;
+    color: $black;
     @include tablet {
       font-size: 3rem;
     }
@@ -34,8 +34,9 @@
     }
   }
   &__sub-header {
+    font-weight: normal;
     font-size: 0.8rem;
-    color: $black;
+    color: $font-color;
     @include tablet {
       font-size: 1rem;
     }
@@ -66,13 +67,14 @@
   }
   &__button {
     text-decoration: none;
+    font-weight: bold;
     color: $white;
-    background-color: $purple;
+    background-color: $btn-color;
     padding: 0.8rem 1rem 0.8rem 1rem;
     border-radius: 1.5rem;
     vertical-align: middle;
     &:hover {
-      background-color: $dark-purple;
+      background-color: $btn-hover-color;
       cursor: pointer;
     }
   }
@@ -83,6 +85,7 @@
       height: 20rem;
     }
     @include desktop {
+      height: 24rem;
       transition: 0.2s;
       &:hover {
         transform: scale(1.02);

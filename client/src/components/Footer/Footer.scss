@@ -3,7 +3,7 @@
 @import "../../styles/partials/fonts";
 
 .footer {
-  background-color: $black;
+  background-color: $nav-footer-color;
   margin: 0rem;
   padding: 1rem;
   color: $white;
@@ -26,7 +26,7 @@
     }
   }
   &__logo {
-    height: 5rem;
+    height: 3.5rem;
     @include tablet {
       margin-top: 2rem;
     }

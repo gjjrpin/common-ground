@@ -28,6 +28,7 @@
     border-radius: 1.5rem;
     border-style: solid;
     border-width: 0.1rem;
+    background-color: $mercury;
     @include tablet {
       width: 16rem;
     }
@@ -35,11 +36,11 @@
   &__button {
     border: none;
     color: $white;
-    background-color: $purple;
+    background-color: $btn-color;
     border-radius: 1.5rem;
     padding: 0.5rem 1rem;
     &:hover {
-      background-color: $dark-purple;
+      background-color: $btn-hover-color;
       cursor: pointer;
     }
     @include tablet {
@@ -47,7 +48,7 @@
     }
   }
   &__error {
-    outline-color: red;
+    outline-color: $error-state;
     outline-style: solid;
     outline-width: 0.1rem;
   }

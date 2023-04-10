@@ -1,5 +1,4 @@
 import "./NotFoundPage.scss";
-import Footer from "../../components/Footer/Footer";
 import notfound from "../../assets/notfound/notfound.gif";
 
 function NotFoundPage() {

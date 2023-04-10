@@ -6,29 +6,29 @@
   padding: 0rem;
 
   @include desktop {
-    padding: 0 25rem 0 25rem;
+    padding: 0 30rem 0 30rem;
   }
   &__prompt-container {
-    animation: 0.7s ease-out 0s 1 test;
+    animation: 0.7s ease-out 0s 1 easeOut;
   }
   &__prompt {
     font-size: 1rem;
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: $purple;
+    background-color: $btn-color;
     color: $white;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    // border-radius: 1.5rem;
+    padding: 0.5rem;
     @include tablet {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
       font-size: 1.3rem;
     }
   }
   &__message-container {
     height: 55vh;
     overflow: auto;
-    background-color: $alabaster;
+    background-color: $mercury;
     border-radius: 1rem;
     padding: 0 1rem 1rem 1rem;
     display: flex;
@@ -52,18 +52,18 @@
   &__message-user {
     animation: 0.2s ease-out 0s 1 slideInFromRight;
     margin-left: auto;
-    background-color: $purple;
+    background-color: $btn-color;
   }
   &__message-server {
     margin-left: auto;
     animation: 0.2s ease-out 0s 1 slideInFromRight;
-    background-color: $mercury;
-    color: $black;
+    background-color: $server;
+    color: $white;
   }
   &__message-participant {
     margin-right: auto;
     animation: 0.2s ease-out 0s 1 slideInFromLeft;
-    background-color: $silver;
+    background-color: $light-grey;
     color: $black;
   }
   &__text-container {
@@ -72,7 +72,7 @@
     margin-bottom: 1rem;
   }
   &__message-box {
-    padding: 0.2rem 0.7rem;
+    padding: 0.4rem 0.7rem;
     resize: none;
     width: 100%;
     border-radius: 1.5rem;
@@ -97,21 +97,22 @@
   }
 
   &__button {
-    margin: 0 0.5rem;
+    margin: 0 0.4rem;
     border: none;
     display: flex;
     align-items: center;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: $white;
-    &:hover {
-      background-color: $mercury;
-      cursor: pointer;
-    }
+    cursor: pointer;
+
     @include tablet {
       height: 0.5rem;
-      padding: 1rem;
+      padding: 1rem 0.4rem;
       font-size: 1.2rem;
       border-radius: 100%;
+      &:hover {
+        background-color: $mercury;
+      }
     }
   }
 }
@@ -135,9 +136,9 @@
 }
 
 //--------------------------------------------------
-@keyframes test {
+@keyframes easeOut {
   0% {
-    transform: scale(5);
+    transform: scale(2);
   }
   100% {
     transform: scale(1);
