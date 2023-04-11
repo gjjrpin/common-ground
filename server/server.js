@@ -22,6 +22,8 @@ const PORT = process.env.PORT || "3001";
 
 // This is for deployment
 app.use(express.static('dist'))
+
+
 // allows us to read x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,6 +34,9 @@ app.use(openai_route);
 app.use(openaitesting_route);
 app.use(topics_route);
 app.use(users_route);
+
+app.use("*", express.static('dist'))
+
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
 });

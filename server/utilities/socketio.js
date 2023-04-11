@@ -15,7 +15,7 @@ function initialize(server) {
     // cors= cross origin resource- if another website wants to access your server, you need to whitelist it first.
     // whitelisting = allowing a client to use your server.
     cors: {
-      origin: "http://localhost:3000",
+      origin: "*",
     },
   });
 
@@ -23,7 +23,6 @@ function initialize(server) {
   // every time someone enters our socket, this will initialize.
   // When someone connects to our socket, it will log out "someone connected"
   io.on("connection", (socket) => {
-
     // This is the same as connected but disconnected.
     socket.on("disconnect", () => {
       // This is the person that disconnects
