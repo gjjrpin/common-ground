@@ -28,7 +28,7 @@ async function isInappropriate(message) {
     model: "text-davinci-003",
     max_tokens: 64,
     prompt: `
-"${message}." Is the user breaking the rules? The rules are: "You cannot swear. You have to be respectful. You cannot talk about conspiracy theories."  Only respond yes or no.
+"The user says ${message}." Is the user breaking the rules? The rules are: "You cannot swear. You have to be respectful. You cannot talk about conspiracy theories."  Only respond yes or no.
       `,
     temperature: 0.6,
   });
