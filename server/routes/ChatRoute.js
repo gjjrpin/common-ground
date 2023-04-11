@@ -5,7 +5,6 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/api/chat", (req, res) => {
-  // TODO: save chat?
 });
 
 // This is how we export modules.
