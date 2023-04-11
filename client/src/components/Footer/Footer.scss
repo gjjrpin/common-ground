@@ -1,0 +1,56 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+@import "../../styles/partials/fonts";
+
+.footer {
+  background-color: $nav-footer-color;
+  margin: 0rem;
+  padding: 1rem;
+  color: $white;
+  text-align: center;
+  &__container {
+    justify-content: center;
+  }
+  &__icon-container {
+    @include tablet {
+      padding-right: 3rem;
+    }
+  }
+  &__icon {
+    height: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    @include tablet {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  &__logo {
+    height: 3.5rem;
+    @include tablet {
+      margin-top: 2rem;
+    }
+  }
+  &__list-container {
+    padding: 0;
+    justify-content: center;
+    @include tablet {
+      display: flex;
+    }
+  }
+  &__list {
+    list-style-type: none;
+    @include tablet {
+      font-weight: bold;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      border-right: 0.1rem solid $white;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  &__copyright {
+    font-size: 0.8rem;
+  }
+}

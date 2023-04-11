@@ -1,0 +1,74 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+@import "../../styles/partials/fonts";
+
+.sorting {
+  padding: 0.5rem;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include tablet {
+    height: 70vh;
+  }
+  &__container {
+  }
+  &__username {
+    text-align: center;
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.5rem;
+    }
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+  &__prompt {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: 0.2s ease-out 0s 1 slideInFromTop;
+    @include tablet {
+      margin-bottom: 3.5rem;
+      font-size: 1.5rem;
+    }
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    @include tablet {
+      gap: 6rem;
+    }
+  }
+  &__button {
+    border: none;
+    text-decoration: none;
+    color: $white;
+    background-color: $btn-color;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    &:hover {
+      background-color: $btn-hover-color;
+      cursor: pointer;
+    }
+    @include tablet {
+      font-size: 1.2rem;
+      padding: 0.5rem 1.5rem;
+    }
+  }
+}
+
+//---------------------------------------------------------------------
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

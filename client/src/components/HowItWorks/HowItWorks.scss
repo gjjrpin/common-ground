@@ -1,0 +1,115 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
+.content {
+  padding: 1rem;
+  background-color: $mercury;
+  @include tablet {
+    padding: 2rem 4rem 4rem 4rem;
+  }
+  @include desktop {
+    padding: 2rem 12rem 2rem 12rem;
+  }
+  &__header {
+    font-size: 1.5rem;
+    text-align: center;
+    @include tablet {
+      font-size: 3rem;
+    }
+  }
+  &__image-container {
+    @include tablet {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+  }
+  &__image {
+    height: 10rem;
+    width: 100%;
+    @include tablet {
+      height: 15rem;
+      width: 50%;
+    }
+    @include desktop {
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+    // --primary is image on the right.
+    &--primary {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+    }
+
+    // --secondary is image on the left.
+    &--secondary {
+      display: block;
+      @include tablet {
+        display: none;
+      }
+    }
+  }
+  &__text {
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    text-align: center;
+    @include tablet {
+      font-size: 1rem;
+      line-height: 2rem;
+      padding: 2rem;
+      text-align: start;
+    }
+    @include desktop {
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+  &__rules-container {
+    align-items: center;
+    @include tablet {
+      margin-left: 7rem;
+      margin-right: 7rem;
+    }
+    @include desktop {
+      margin: 2rem 20rem 5rem 20rem;
+    }
+  }
+  &__rules-header {
+    text-align: center;
+    @include tablet {
+      font-size: 3rem;
+      margin-top: 0;
+    }
+  }
+
+  &__button {
+    font-size: 1rem;
+    color: $white;
+    font-weight: bold;
+    background-color: $btn-color;
+    width: 100%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.8rem 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    &:hover {
+      background-color: $btn-hover-color;
+      cursor: pointer;
+    }
+    @include tablet {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.none {
+  display: none;
+}

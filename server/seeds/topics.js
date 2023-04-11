@@ -12,31 +12,29 @@ exports.seed = async function (knex) {
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab1",
-      statement: "Access to quality healthcare is a basic human right.",
+      statement: "Women don't get paid equally as men.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab1",
       statement:
-        "Climate change is a real and pressing issue that requires immediate action.",
+        "Trans men should be allowed to compete in professional sports.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab1",
       statement:
-        "The government has a responsibility to ensure that all citizens have access to education and job training.",
+        "People under the age of 18 should be allowed to take hormone blockers.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab1",
-      statement:
-        "Taxation is necessary to fund essential government services and to reduce income inequality.",
+      statement: "Canada should ban all legal firearms.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab1",
-      statement:
-        "The criminal justice system should prioritize rehabilitation over punishment.",
+      statement: "Women should have the right to an abortion.",
     },
     // ---------------------------------------------------------------------
 
@@ -44,30 +42,29 @@ exports.seed = async function (knex) {
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab2",
-      statement:
-        "The government should have a smaller role in people's lives and businesses.",
+      statement: "There are only two genders.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab2",
-      statement: "Lower taxes will promote economic growth and job creation.",
+      statement: "Illegal immigration should be strictly enforced.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab2",
-      statement:
-        "Individual responsibility and self-reliance should be emphasized.",
+      statement: "The 'Freedom Convoy' was a justified movement.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab2",
       statement:
-        "The free market should be allowed to operate without government interference.",
+        "The VPD (Vancouver Police Department) is a net positive in the city of Vancouver.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab2",
-      statement: "People should have the right to own firearms.",
+      statement:
+        "All forms of speech must be protected; including the ones that insult people.",
     },
     // ---------------------------------------------------------------------
 
@@ -75,32 +72,30 @@ exports.seed = async function (knex) {
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
-      statement:
-        "The importance of a strong national defence and protecting national security.",
+      statement: "Everyone should have the freedom to practice any religion.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
       statement:
-        "The importance of individual rights and freedoms, such as freedom of speech and religion.",
+        "Climate change is a real problem and needs to be addressed with urgency.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
       statement:
-        "The importance of a strong national defence and protecting national security.",
+        "Providing adequate access to education, personal, and professional growth is important.",
+    },
+    {
+      id: uuidv4(),
+      category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
+      statement: "All Canadians deserve the right to adequate healthcare.",
     },
     {
       id: uuidv4(),
       category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
       statement:
-        "The importance of protecting the environment and preserving natural resources for future generations.",
-    },
-    {
-      id: uuidv4(),
-      category_id: "2922c286-16cd-4d43-ab98-c79f698aeab3",
-      statement:
-        "The importance of providing access to education and opportunities for personal and professional growth.",
+        "The Catholic residential schools in Canada were a tragic injustice that claimed the lives of countless Indigenous children.",
     },
     // ---------------------------------------------------------------------
   ]);
