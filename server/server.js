@@ -20,6 +20,8 @@ socketio.initialize(server);
 
 const PORT = process.env.PORT || "3001";
 
+// This is for deployment
+app.use(express.static('dist'))
 // allows us to read x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
