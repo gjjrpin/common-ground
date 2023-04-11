@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
 
 // This is taken from socket.io website. Link below.
-const URL = process.env.SOCKET_URL || "http://localhost:3001";
+const URL = "/";
+// const URL = process.env.SOCKET_URL || "http://localhost:3001";
 
 // This connects to the url above.
 // CONNECTING TO THE SOCKET PROTOCOL.
