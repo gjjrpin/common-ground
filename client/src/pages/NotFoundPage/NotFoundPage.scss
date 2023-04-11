@@ -1,15 +1,12 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/colors";
 @import "../../styles/partials/fonts";
-
 .notfound {
   &__image {
-    height: 10rem;
-
+    height: 20rem;
+    width: 100%;
     @include tablet {
-      display: flex;
-      justify-content: center;
-      height: 40rem;
+      height: 90vh;
     }
   }
 }

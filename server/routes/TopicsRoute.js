@@ -59,8 +59,6 @@ router.post("/api/topics/:topic_id/agree", (req, res) => {
     const disagreer = queues[topic_id].disagree.shift();
     const room_id = uuidv4();
 
-    console.log(`${agreer} matches ${disagreer}`);
-
     socketio.sendUsersToRoom(agreer, disagreer, room_id, topic_id);
     //socketio.sendUserToRoom(disagreer, room_id, topic_id);
 
@@ -91,8 +89,6 @@ router.post("/api/topics/:topic_id/disagree", (req, res) => {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
     const room_id = uuidv4();
-
-    console.log(`${agreer} matches ${disagreer}`);
 
     socketio.sendUsersToRoom(agreer, disagreer, room_id, topic_id);
     //socketio.sendUserToRoom(disagreer, room_id, topic_id);
