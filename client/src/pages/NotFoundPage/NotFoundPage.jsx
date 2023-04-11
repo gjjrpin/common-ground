@@ -1,5 +1,5 @@
 import "./NotFoundPage.scss";
-import notfound from "../../assets/notfound/notfound.gif";
+import notfound from "../../assets/notfound/notfound.jpg";
 
 function NotFoundPage() {
   return (

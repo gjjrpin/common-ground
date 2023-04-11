@@ -23,11 +23,9 @@ function initialize(server) {
   // every time someone enters our socket, this will initialize.
   // When someone connects to our socket, it will log out "someone connected"
   io.on("connection", (socket) => {
-    console.log("someone connected");
 
     // This is the same as connected but disconnected.
     socket.on("disconnect", () => {
-      console.log("socket: connection closed");
       // This is the person that disconnects
       socket.broadcast.emit("user_disconnected", { username: "User" });
     });
@@ -42,10 +40,7 @@ function initialize(server) {
     // https://socket.io/docs/v4/rooms/#joining-and-leaving
 
     socket.on("join_room", ({ room_number, username }) => {
-      console.log(username + " joined the room: " + room_number);
-
       // THIS NOTIFIES THAT ANOTHER USER JOINED THE ROOM---------------------------
-
       socket.join(room_number);
       socket.nsp
         .to(room_number)
@@ -55,17 +50,13 @@ function initialize(server) {
     // THIS DISCONNECTS THE CHAT----------------------------------------------------
 
     socket.on("leave_room", ({ room_number, username }) => {
-      console.log(username + " left the room: " + room_number);
-
       delete connected_users[username]; // removes {username:socket.id} from connected_users
       delete usernames_list[username]; // removes a user from the list when they leave
-
       socket.leave(room_number);
       socket.broadcast
         .to(room_number)
         .emit("user_left_room", { room_number, username });
     });
-
     // THE CLIENT IS SENDING A MESSAGE HERE-----------------------------------------
     /* This is the same as connected but sending chat.
        we are destructuring username and message from the ChatPage.jsx component.
