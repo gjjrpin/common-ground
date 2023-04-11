@@ -17,7 +17,6 @@ const openai = new OpenAIApi(configuration);
 
 async function isInappropriate(message) {
   // return "no"; // disables openai
-
   if (!configuration.apiKey) {
     throw new Error(
       "OpenAI API key not configured, please follow instructions in README.md"
@@ -29,7 +28,7 @@ async function isInappropriate(message) {
     model: "text-davinci-003",
     max_tokens: 64,
     prompt: `
-"The user says ${message}." Is the user breaking the rules? The rules are: "You cannot swear. You have to be respectful. You cannot talk about conspiracy theories."  Only respond yes or no.
+"${message}." Is the user breaking the rules? The rules are: "You cannot swear. You have to be respectful. You cannot talk about conspiracy theories."  Only respond yes or no.
       `,
     temperature: 0.6,
   });
