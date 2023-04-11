@@ -1,8 +1,8 @@
 const socket = require("socket.io");
 const openai = require("./openai.js");
+const { connected_users, usernames_list } = require("./memory_data.js");
 
 let io;
-let connected_users = {};
 
 // express -> HTTP
 // socket.io -> socket protocol
@@ -42,12 +42,12 @@ function initialize(server) {
     // https://socket.io/docs/v4/rooms/#joining-and-leaving
 
     socket.on("join_room", ({ room_number, username }) => {
-      console.log("someone joined the room: " + room_number);
+      console.log(username + " joined the room: " + room_number);
 
       // THIS NOTIFIES THAT ANOTHER USER JOINED THE ROOM---------------------------
 
       socket.join(room_number);
-      socket.broadcast
+      socket.nsp
         .to(room_number)
         .emit("new_user_joined_room", { room_number, username });
     });
@@ -55,7 +55,10 @@ function initialize(server) {
     // THIS DISCONNECTS THE CHAT----------------------------------------------------
 
     socket.on("leave_room", ({ room_number, username }) => {
-      console.log("someone left the room: " + room_number);
+      console.log(username + " left the room: " + room_number);
+
+      delete connected_users[username]; // removes {username:socket.id} from connected_users
+      delete usernames_list[username]; // removes a user from the list when they leave
 
       socket.leave(room_number);
       socket.broadcast
@@ -99,11 +102,20 @@ function getIo() {
   return io;
 }
 
-function sendUserToRoom(username, room_id, topic_id) {
-  io.to(connected_users[username]).emit("go_to_room", {
+function getConnectedUsers() {
+  return connected_users;
+}
+
+function sendUsersToRoom(username1, username2, room_id, topic_id) {
+  io.to(connected_users[username1]).emit("go_to_room", {
+    room_id: room_id,
+    topic_id: topic_id,
+  });
+
+  io.to(connected_users[username2]).emit("go_to_room", {
     room_id: room_id,
     topic_id: topic_id,
   });
 }
 
-module.exports = { initialize, getIo, sendUserToRoom };
+module.exports = { initialize, getIo, sendUsersToRoom };

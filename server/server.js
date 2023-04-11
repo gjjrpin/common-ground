@@ -6,6 +6,7 @@ const topics_route = require("./routes/TopicsRoute.js");
 const openai_route = require("./routes/OpenaiRoute.js");
 const openaitesting_route = require("./routes/OpenaiTestingRoute.js");
 const socketio = require("./utilities/socketio.js");
+const users_route = require("./routes/UsersRoute.js");
 
 require("dotenv").config();
 
@@ -26,6 +27,7 @@ app.use(categories_route);
 app.use(openai_route);
 app.use(openaitesting_route);
 app.use(topics_route);
+app.use(users_route);
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
 });

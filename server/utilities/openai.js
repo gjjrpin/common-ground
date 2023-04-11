@@ -14,7 +14,7 @@ const openai = new OpenAIApi(configuration);
 // --------------------------------------------------------------------------------
 
 async function isInappropriate(message) {
-  return "no"; // disables openai
+  // return "no"; // disables openai
 
   if (!configuration.apiKey) {
     throw new Error(

@@ -17,7 +17,13 @@ function SortingPage({ username, socket }) {
     socket.on("go_to_room", ({ room_id, topic_id }) => {
       goToRoom(room_id, topic_id);
     });
+
+    socket.on("disconnect", onDisconnect);
   }, []);
+
+  function onDisconnect() {
+    socket.emit("leave_room", { username });
+  }
 
   //------------------------------------------------------------
 
@@ -38,7 +44,6 @@ function SortingPage({ username, socket }) {
       });
       if (response.data.room_id) {
         const room_id = response.data.room_id;
-        console.log("match");
         //navigate(`/chat/${room_id}/${topic_id}`);
       } else if (currentTopicIndex < topics.length - 1) {
         // checking if you're in the end.

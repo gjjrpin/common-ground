@@ -40,7 +40,7 @@ function ChatPage({ username, socket }) {
     socket.on("user_disconnected", ({ username }) => {
       setMessages((previousMessages) => [
         ...previousMessages,
-        { username: "server", message: `${username} has disconnected` },
+        { username: "Server", message: `${username} has disconnected` },
       ]);
     });
     socket.on("send_chat_server", ({ username, message }) => {
@@ -57,7 +57,6 @@ function ChatPage({ username, socket }) {
     // This is a new user joining a private room -------------------------------
 
     socket.on("new_user_joined_room", ({ room_number, username }) => {
-      // todo
       setMessages((previousMessages) => [
         ...previousMessages,
         { username: "Server", message: `${username} has joined` },
@@ -171,6 +170,7 @@ function ChatPage({ username, socket }) {
                   {message.username}: {message.message}
                 </div>
               );
+              // ----------------------------------------------------
             } else if (message.username === "Server") {
               return (
                 <div
@@ -180,8 +180,9 @@ function ChatPage({ username, socket }) {
                   {message.username}: {message.message}
                 </div>
               );
-              // ----------------------------------------------------
-            } else {
+            }
+            // ----------------------------------------------------
+            else {
               return (
                 <div
                   key={index}

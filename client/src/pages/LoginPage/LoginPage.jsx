@@ -1,6 +1,7 @@
 import "./LoginPage.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginPage({ chooseUsername, socket }) {
   const [username, setUsername] = useState("");
@@ -8,14 +9,15 @@ function LoginPage({ chooseUsername, socket }) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  function handleOnSubmit(event) {
+  async function handleOnSubmit(event) {
     event.preventDefault();
 
-    if (!isValid()) {
+    if (!isValid() || !(await postUsername(username))) {
       setError(true);
       // stops everything
       return;
     }
+
     socket.emit("user_connected", { username });
 
     chooseUsername(username);
@@ -27,7 +29,7 @@ function LoginPage({ chooseUsername, socket }) {
   }
 
   // Validation for Username:
-  function isValid() {
+  async function isValid() {
     let valid = true;
     //---regular expression--------
     //https://stackoverflow.com/questions/23476532/check-if-string-contains-only-letters-in-javascript
@@ -41,6 +43,15 @@ function LoginPage({ chooseUsername, socket }) {
     return valid;
   }
 
+  async function postUsername(new_username) {
+    try {
+      const response = await axios.post(`/api/users/${new_username}`); // true or false, true means username was created, false means its invalid.
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className="login">
@@ -49,8 +60,12 @@ function LoginPage({ chooseUsername, socket }) {
           {/* conditional rendering */}
           {error && (
             <p className="login__error-message">
-              Invalid values! Username should not include special characters or
-              numbers, and should be less than 10 characters in length.
+              User might already be taken!
+              <br />
+              <br />
+              Otherwise please make sure the username does not include any
+              special characters or numbers, and should be less than 10
+              characters in length.
             </p>
           )}
           <div className="login__container">
