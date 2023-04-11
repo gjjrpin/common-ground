@@ -6,17 +6,28 @@ import axios from "axios";
 function LoginPage({ chooseUsername, socket }) {
   const [username, setUsername] = useState("");
   // Error state
-  const [error, setError] = useState(false);
+  const [errorInvalidCharacter, setErrorInvalidCharacter] = useState(false);
+  const [errorUserTaken, setErrorUserTaken] = useState(false);
+
   const navigate = useNavigate();
 
   async function handleOnSubmit(event) {
     event.preventDefault();
+    setErrorInvalidCharacter(false); // reset to false
+    setErrorUserTaken(false); // reset to false
 
-    if (!isValid() || !(await postUsername(username))) {
-      setError(true);
+    if (!isValid()) {
+      setErrorInvalidCharacter(true);
       // stops everything
       return;
     }
+    if (!(await postUsername(username))) {
+      setErrorUserTaken(true);
+      // stops everything
+      return;
+    }
+
+    // ---------- valid, continue
 
     socket.emit("user_connected", { username });
 
@@ -29,14 +40,14 @@ function LoginPage({ chooseUsername, socket }) {
   }
 
   // Validation for Username:
-  async function isValid() {
+  function isValid() {
     let valid = true;
     //---regular expression--------
     //https://stackoverflow.com/questions/23476532/check-if-string-contains-only-letters-in-javascript
     if (username.length > 10) {
       valid = false;
     }
-    if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0-9]/.test(username)) {
+    if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username)) {
       valid = false;
     }
     //-----------------------------
@@ -58,20 +69,20 @@ function LoginPage({ chooseUsername, socket }) {
         <form onSubmit={handleOnSubmit}>
           <h2 className="login__title">Please enter a username:</h2>
           {/* conditional rendering */}
-          {error && (
+          {errorUserTaken && (
+            <p className="login__error-message">Username is already taken!</p>
+          )}
+          {errorInvalidCharacter && (
             <p className="login__error-message">
-              User might already be taken!
-              <br />
-              <br />
-              Otherwise please make sure the username does not include any
-              special characters or numbers, and should be less than 10
-              characters in length.
+              Please make sure the username does not include any special
+              characters and should be less than 10 characters in length.
             </p>
           )}
+
           <div className="login__container">
             <input
               className={`login__form form-username ${
-                error ? "login__error" : ""
+                errorInvalidCharacter || errorUserTaken ? "login__error" : ""
               }`}
               type="text"
               onChange={handleOnChange}
