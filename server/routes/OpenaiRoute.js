@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 // This allows us to use express
 const express = require("express");
 const router = express.Router();

@@ -8,7 +8,9 @@ const openaitesting_route = require("./routes/OpenaiTestingRoute.js");
 const socketio = require("./utilities/socketio.js");
 const users_route = require("./routes/UsersRoute.js");
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const app = express();
 // This is used by socket.io
