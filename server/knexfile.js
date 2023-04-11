@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== "production") {
 module.exports = {
   client: "mysql2",
   connection: {
-    host: "127.0.0.1",
+    host: "/",
     // This links to the .env
     database: process.env.DB_LOCAL_DBNAME,
     user: process.env.DB_LOCAL_USER,
