@@ -3,6 +3,7 @@ const express = require("express");
 const knex = require("knex")(require("../knexfile"));
 const { v4: uuidv4 } = require("uuid");
 const socketio = require("../utilities/socketio");
+const { queues } = require("../utilities/memory_data");
 
 // We are using router here to manage the endpoint.
 const router = express.Router();
@@ -27,14 +28,6 @@ function shuffle(array) {
 
   return array;
 }
-
-// THIS IS THE QUEUE FOR THE AGREE/DISAGREE----------------------------------------
-
-let queues = {};
-
-router.get("/api/test", (req, res) => {
-  res.send(queues);
-});
 
 //-----TINDER SORTING ALGORITHM----------------------------------------------------
 
