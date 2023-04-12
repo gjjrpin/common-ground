@@ -97,23 +97,6 @@ router.post("/api/topics/:topic_id/disagree", (req, res) => {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
     //------------------------------------------------------------------------------------
-    /*
-      example:
-      queues = {
-        "1234-1234": {
-          agree: [jeff, gj],
-          disagree: []
-        },
-        "1234-1235": {
-          agree: [jeff],
-          disagree: [gj]
-        },
-        "1234-1236": {
-          agree: [],
-          disagree: [jeff]
-        }
-      }
-    */
 
     for (const topic in queues) {
       // 2. filter through agreer

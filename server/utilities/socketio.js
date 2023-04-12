@@ -1,6 +1,6 @@
 const socket = require("socket.io");
 const openai = require("./openai.js");
-const { connected_users, usernames_list } = require("./memory_data.js");
+const { connected_users, usernames_list, queues } = require("./memory_data.js");
 
 let io;
 
@@ -25,8 +25,29 @@ function initialize(server) {
   io.on("connection", (socket) => {
     // This is the same as connected but disconnected.
     socket.on("disconnect", () => {
+      let username;
+
+      for (const u in connected_users) {
+        if (connected_users[u] == socket.id) {
+          username = u;
+        }
+      }
+
+      delete connected_users[username]; // removes {username:socket.id} from connected_users
+      delete usernames_list[username]; // removes a user from the list when they leave
+
+      // removes username
+      for (const topic in queues) {
+        // 2. filter through username
+        queues[topic].agree = queues[topic].agree.filter((x) => x !== username);
+
+        queues[topic].disagree = queues[topic].disagree.filter(
+          (x) => x !== username
+        );
+      }
+
       // This is the person that disconnects
-      socket.broadcast.emit("user_disconnected", { username: "User" });
+      socket.broadcast.emit("user_disconnected", { username: username });
     });
     // THIS IS STORING THE USERNAME AND SOCKET ID TO connected_users
     // our client will emit "user_connected" with their username
@@ -51,6 +72,18 @@ function initialize(server) {
     socket.on("leave_room", ({ room_number, username }) => {
       delete connected_users[username]; // removes {username:socket.id} from connected_users
       delete usernames_list[username]; // removes a user from the list when they leave
+
+      // removes username
+      for (const topic in queues) {
+        // 2. filter through username
+        queues[topic].agree = queues[topic].agree.filter((x) => x !== username);
+
+        queues[topic].disagree = queues[topic].disagree.filter(
+          (x) => x !== username
+        );
+      }
+
+
       socket.leave(room_number);
       socket.broadcast
         .to(room_number)
