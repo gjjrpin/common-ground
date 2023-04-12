@@ -4,7 +4,7 @@
 
 .chat {
   padding: 0rem;
-
+  background-color: $white;
   @include desktop {
     padding: 0 30rem 0 30rem;
   }
@@ -29,7 +29,6 @@
     height: 55vh;
     overflow: auto;
     background-color: $mercury;
-    border-radius: 1rem;
     padding: 0 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
@@ -68,14 +67,20 @@
   }
   &__text-container {
     display: flex;
-    margin-top: 1rem;
     margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: solid;
+    border-bottom: solid;
+    @include desktop {
+      border: solid;
+    }
   }
   &__message-box {
     padding: 0.4rem 0.7rem;
     resize: none;
     width: 100%;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     font-family: "AvenirNext LT Pro";
   }
   &__icon {

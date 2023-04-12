@@ -28,11 +28,10 @@ async function isInappropriate(message) {
     model: "text-davinci-003",
     max_tokens: 64,
     prompt: `
-"The user says ${message}." Is the user breaking the rules? The rules are: "You cannot say a bad word."  Only respond yes or no.
+The user says "${message}." You are the content moderator. No conspiracy theories or swearing or insults. Is the user breaking the rules? Only respond yes or no.
       `,
-    temperature: 0.9,
+    temperature: 0.4,
   });
-
   return completion.data.choices[0].text;
 }
 

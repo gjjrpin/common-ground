@@ -5,10 +5,10 @@
 .hero {
   &__container {
     padding-top: 2rem;
-    height: 80vh;
+    height: 83vh;
     display: flex;
     flex-direction: column;
-    background-color: $white;
+    background-color: $bg-color;
 
     @include tablet {
       flex-direction: row;
@@ -41,7 +41,7 @@
       font-size: 1rem;
     }
     @include desktop {
-      font-size: 1.7rem;
+      font-size: 1.4rem;
       text-align: left;
     }
   }

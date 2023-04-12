@@ -205,6 +205,7 @@ function ChatPage({ username, socket }) {
         </button>
         <textarea
           className="chat__message-box"
+          placeholder="Enter message here..."
           value={currentMessage}
           onChange={handleOnChangeCurrentMessage}
           rows="1"
