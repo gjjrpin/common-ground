@@ -30,7 +30,7 @@ async function isInappropriate(message) {
     prompt: `
 The user says "${message}." You are the content moderator. No conspiracy theories or swearing or insults. Is the user breaking the rules? Only respond yes or no.
       `,
-    temperature: 0.4,
+    temperature: 0.2,
   });
   return completion.data.choices[0].text;
 }
