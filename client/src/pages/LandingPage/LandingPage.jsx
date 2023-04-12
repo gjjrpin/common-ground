@@ -16,12 +16,15 @@ function LandingPage() {
             respectful conversations.
           </h3>
           <div className="hero__links">
+            <a
+              className="hero__button hero__button--secondary"
+              href="/#how-it-works"
+            >
+              How It Works
+            </a>
             <Link className="hero__button" to="/login">
               Get Started
             </Link>
-            <a className="hero__button" href="/#how-it-works">
-              How It Works
-            </a>
           </div>
         </div>
         <div className="hero__column">

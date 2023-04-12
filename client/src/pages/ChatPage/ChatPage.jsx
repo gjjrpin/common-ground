@@ -123,7 +123,6 @@ function ChatPage({ username, socket }) {
     ]);
 
     // SOCKET PROTOCOL
-    // A lot like axios.post
     socket.emit("send_chat_client", message);
 
     setCurrentMessage("");

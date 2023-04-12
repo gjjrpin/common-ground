@@ -4,12 +4,6 @@ const { connected_users, usernames_list, queues } = require("./memory_data.js");
 
 let io;
 
-// express -> HTTP
-// socket.io -> socket protocol
-// server (port 3001) via HTTP -> express
-// server (port 3001) via socket protocol -> socket.io (io)
-// ----------------------------------------------------------
-// copied directly from socket.io.
 function initialize(server) {
   io = socket(server, {
     // cors= cross origin resource- if another website wants to access your server, you need to whitelist it first.
@@ -21,7 +15,6 @@ function initialize(server) {
 
   // THIS IS THE CHAT CONNECTION-----------------------------------------------
   // every time someone enters our socket, this will initialize.
-  // When someone connects to our socket, it will log out "someone connected"
   io.on("connection", (socket) => {
     // This is the same as connected but disconnected.
     socket.on("disconnect", () => {
@@ -109,8 +102,6 @@ function initialize(server) {
             message: "You said something inappropriate",
           });
         } else {
-          // console.log("sending...");
-          // console.log(username, message);
           // broadcast is like emit but it sends the response to itself as well
           socket
             .to(room_number)

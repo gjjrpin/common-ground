@@ -4,21 +4,28 @@
 
 .hero {
   &__container {
-    padding-top: 2rem;
-    height: 83vh;
+    padding-top: 1rem;
+    height: 85vh;
     display: flex;
     flex-direction: column;
-    background-color: $bg-color;
+    //------ https://codepen.io/taniarascia/pen/qOjLjE ------------------
+
+    background: linear-gradient(253deg, #c395e7, #1797d2, #0cc898);
+    background-size: 300% 300%;
+    -webkit-animation: Background 20s ease infinite;
+    -moz-animation: Background 20s ease infinite;
+    animation: Background 20s ease infinite;
+    //-------------------------------------------------------------------
 
     @include tablet {
       flex-direction: row;
       align-items: center;
-      padding-left: 3rem;
-      padding-right: 3rem;
+      padding: 2rem 3rem;
     }
     @include desktop {
       padding-left: 8rem;
       padding-right: 8rem;
+      height: 80vh;
     }
   }
   &__header {
@@ -35,11 +42,8 @@
   }
   &__sub-header {
     font-weight: normal;
-    font-size: 0.8rem;
-    color: $font-color;
-    @include tablet {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
+    color: $black;
     @include desktop {
       font-size: 1.4rem;
       text-align: left;
@@ -54,10 +58,9 @@
     }
   }
   &__links {
-    display: none;
-
+    display: flex;
+    justify-content: space-evenly;
     @include tablet {
-      display: flex;
       justify-content: center;
       gap: 2rem;
     }
@@ -70,18 +73,35 @@
     font-weight: bold;
     color: $white;
     background-color: $btn-color;
-    padding: 0.8rem 1rem 0.8rem 1rem;
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
     border-radius: 1.5rem;
     vertical-align: middle;
     &:hover {
       background-color: $btn-hover-color;
       cursor: pointer;
     }
+    &--secondary {
+      background-color: $white;
+      color: $btn-color;
+      border: $btn-color 2px solid;
+      &:hover {
+        color: $btn-hover-color;
+        border-color: $btn-hover-color;
+        background-color: $white;
+        cursor: pointer;
+      }
+    }
+    @include tablet {
+      padding: 0.8rem 1rem 0.8rem 1rem;
+      margin: 0;
+    }
   }
   &__image {
     height: 15rem;
     width: 100%;
+    margin-top: 2rem;
     @include tablet {
+      margin-top: 0;
       height: 20rem;
     }
     @include desktop {
@@ -91,5 +111,41 @@
         transform: scale(1.02);
       }
     }
+  }
+}
+//----------------------------------------------------------
+@-webkit-keyframes Background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes Background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes Background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

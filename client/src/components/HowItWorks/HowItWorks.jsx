@@ -51,7 +51,8 @@ function HowItWorksPage() {
             When you click "Get Started," you'll be asked to enter a username of
             your choice. You don't have to enter your real name, but please be
             respectful. Your username needs to be less than 10 letters and
-            contain no special characters or numbers.
+            contain no special characters. If your username is taken, please try
+            again.
           </h3>
         </div>
         <div className="content__image-container">
@@ -63,8 +64,8 @@ function HowItWorksPage() {
           <h3 className="content__text">
             You'll then be prompted with a statement that you can either agree
             or disagree with. Keep clicking until you find someone with an
-            opposing view. Think of this like Tinder—except you're matching with
-            someone you don't see eye to eye with.
+            opposing view. Think of this like Tinder— except you're matching
+            with someone you don't see eye to eye with.
           </h3>
           <img
             className="content__image content__image--primary"
