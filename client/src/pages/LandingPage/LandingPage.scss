@@ -60,6 +60,7 @@
   &__links {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 0.8rem;
     @include tablet {
       justify-content: center;
       gap: 2rem;
@@ -75,7 +76,9 @@
     background-color: $btn-color;
     padding: 0.5rem 0.8rem 0.5rem 0.8rem;
     border-radius: 1.5rem;
-    vertical-align: middle;
+    // vertical-align: middle;
+    display: flex;
+    align-items: center;
     &:hover {
       background-color: $btn-hover-color;
       cursor: pointer;
