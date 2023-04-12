@@ -57,6 +57,21 @@ router.post("/api/topics/:topic_id/agree", (req, res) => {
   if (queues[topic_id].disagree.length > 0) {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
+    //------------------------------------------------------------------------------------
+    // 1. loop through queues.
+    for (const topic in queues) {
+      // 2. filter through agreer
+      queues[topic].agree = queues[topic].agree.filter((x) => x !== agreer);
+      queues[topic].agree = queues[topic].agree.filter((x) => x !== disagreer);
+
+      queues[topic].disagree = queues[topic].disagree.filter(
+        (x) => x !== agreer
+      );
+      queues[topic].disagree = queues[topic].disagree.filter(
+        (x) => x !== disagreer
+      );
+    }
+
     const room_id = uuidv4();
 
     socketio.sendUsersToRoom(agreer, disagreer, room_id, topic_id);
@@ -88,6 +103,38 @@ router.post("/api/topics/:topic_id/disagree", (req, res) => {
   if (queues[topic_id].agree.length > 0) {
     const agreer = queues[topic_id].agree.shift();
     const disagreer = queues[topic_id].disagree.shift();
+    //------------------------------------------------------------------------------------
+    /*
+      example:
+      queues = {
+        "1234-1234": {
+          agree: [jeff, gj],
+          disagree: []
+        },
+        "1234-1235": {
+          agree: [jeff],
+          disagree: [gj]
+        },
+        "1234-1236": {
+          agree: [],
+          disagree: [jeff]
+        }
+      }
+    */
+
+    for (const topic in queues) {
+      // 2. filter through agreer
+      queues[topic].agree = queues[topic].agree.filter((x) => x !== agreer);
+      queues[topic].agree = queues[topic].agree.filter((x) => x !== disagreer);
+
+      queues[topic].disagree = queues[topic].disagree.filter(
+        (x) => x !== agreer
+      );
+      queues[topic].disagree = queues[topic].disagree.filter(
+        (x) => x !== disagreer
+      );
+    }
+
     const room_id = uuidv4();
 
     socketio.sendUsersToRoom(agreer, disagreer, room_id, topic_id);
