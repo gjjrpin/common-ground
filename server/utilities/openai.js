@@ -26,9 +26,9 @@ async function isInappropriate(message) {
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
-    max_tokens: 64,
+    max_tokens: 100,
     prompt: `
-The user says "${message}." You are the content moderator. No conspiracy theories or swearing or insults. Is the user breaking the rules? Only respond yes or no.
+The user says "${message}." You are the content moderator. No conspiracy theories or misinformation or racism or swearing or insults. Is the user breaking the rules? Only respond yes or no.
       `,
     temperature: 0.2,
   });
